@@ -9,7 +9,7 @@ skip_commits:
   message: /updated readme.*|update readme.*s/
 
 install:
-    - pssh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Bootstrap }
+    - pwsh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Bootstrap }
 
 build: off
 
