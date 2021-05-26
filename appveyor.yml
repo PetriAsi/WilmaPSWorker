@@ -8,11 +8,14 @@ environment:
 skip_commits:
   message: /updated readme.*|update readme.*s/
 
+install:
+    - pssh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Bootstrap }
+
 build: off
 
 # Kick off the CI/CD pipeline
 test_script:
-  - pwsh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Task Test -Bootstrap }
+  - pwsh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Task Test }
 
 deploy:
     provider: GitHub
