@@ -9,12 +9,13 @@ environment:
 
 skip_commits:
   message: /updated readme.*|update readme.*s/
+
 build: off
 
 # Kick off the CI/CD pipeline
 test_script:
-  - ps:   if ($env:PowerShellEdition -eq 'WindowsPowerShell') { . .\build.ps1 -Task Test }
-  - pwsh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Task Test }
+  - ps:   if ($env:PowerShellEdition -eq 'WindowsPowerShell') { . .\build.ps1 -Task Test -Bootstrap }
+  - pwsh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Task Test -Bootstrap }
 
 deploy:
     provider: GitHub
