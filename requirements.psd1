@@ -6,7 +6,6 @@
         Version = '5.1.1'
         Parameters = @{
             SkipPublisherCheck = $true
-            AllowClobber = $true
         }
     }
     'psake' = @{
