@@ -6,7 +6,8 @@ $private = @(Get-ChildItem -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Priv
 
 foreach ($import in @($public + $private)) {
     try {
-        .  $import.FullName
+        Write-Warning $import.FullName
+        Import-module  $import.FullName
     } catch {
         throw "Unable to import-module [$($import.FullName)]"
     }

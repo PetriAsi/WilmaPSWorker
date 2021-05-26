@@ -1,4 +1,5 @@
 function Get-WPSWSession (){
+    [CmdletBinding()]
     param(
       [string]
       $server = 'DEFAULT'
@@ -6,6 +7,8 @@ function Get-WPSWSession (){
 
     $config = Get-WPSWConfig -server $server
 
+    Write-Verbose "Starting Get-WPSWSession"
+    Write-Debug "Config: $config"
 
     $Login = $config.cred.UserName
     $password =  [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($config.cred.Password))
@@ -19,7 +22,7 @@ function Get-WPSWSession (){
     $Apikey = "sha1:$hashString"
     $LoginParameters = "Login=$Login&Password=$Password&SessionId=$SessionID&ApiKey=$Apikey&format=json"
 
-    $reply = Invoke-RestMethod -Method Post -Uri "$wilmaURL/login?$LoginParameters" -SessionVariable WilmaSession
+    $reply = Invoke-RestMethod -Method Post -Uri "$($config.url)/login?$LoginParameters" -SessionVariable WilmaSession
 
     $result = @{
         LoginResult = $reply.LoginResult
@@ -34,7 +37,7 @@ function Get-WPSWSession (){
         School      = $reply.School
     }
 
-    if ($LoginResult -ne "OK") {
+    if ($result.LoginResult -ne "OK") {
     Throw "Kirjautuminen epäonnistui"
     } else {
       @{WilmaSession=$WilmaSession
