@@ -1,13 +1,5 @@
 # Taken with love from @juneb_get_help (https://raw.githubusercontent.com/juneb/PesterTDD/master/Module.Help.Tests.ps1)
-function script:FilterOutCommonParams {
-    param ($Params)
-    $commonParams = @(
-        'Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable',
-        'OutBuffer', 'OutVariable', 'PipelineVariable', 'Verbose', 'WarningAction',
-        'WarningVariable', 'Confirm', 'Whatif'
-    )
-    $params | Where-Object { $_.Name -notin $commonParams } | Sort-Object -Property Name -Unique
-}
+
 BeforeDiscovery {
 
 
@@ -38,6 +30,16 @@ BeforeDiscovery {
 Describe "Test help for <_.Name>" -ForEach $commands {
 
     BeforeDiscovery {
+        function script:FilterOutCommonParams {
+            param ($Params)
+            $commonParams = @(
+                'Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable',
+                'OutBuffer', 'OutVariable', 'PipelineVariable', 'Verbose', 'WarningAction',
+                'WarningVariable', 'Confirm', 'Whatif'
+            )
+            $params | Where-Object { $_.Name -notin $commonParams } | Sort-Object -Property Name -Unique
+        }
+
         # Get command help, parameters, and links
         $command               = $_
         $commandHelp           = Get-Help $command.Name -ErrorAction SilentlyContinue
@@ -47,6 +49,15 @@ Describe "Test help for <_.Name>" -ForEach $commands {
     }
 
     BeforeAll {
+        function script:FilterOutCommonParams {
+            param ($Params)
+            $commonParams = @(
+                'Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable',
+                'OutBuffer', 'OutVariable', 'PipelineVariable', 'Verbose', 'WarningAction',
+                'WarningVariable', 'Confirm', 'Whatif'
+            )
+            $params | Where-Object { $_.Name -notin $commonParams } | Sort-Object -Property Name -Unique
+        }
         # These vars are needed in both discovery and test phases so we need to duplicate them here
         $command                = $_
         $commandName            = $_.Name
