@@ -1,4 +1,5 @@
 function New-WPSWSite(){
+    [CmdletBinding(SupportsShouldProcess)]
     param(
         # Short name for wilma site
         [Parameter(Mandatory=$true)]
@@ -39,7 +40,9 @@ function New-WPSWSite(){
             }
 
             $config.sites[$site] = $newsite
-            Export-Configuration $config
+            If ($PSCmdlet.ShouldProcess("ShouldProcess?")) {
+                Export-Configuration $config
+            }
         }
 
 }

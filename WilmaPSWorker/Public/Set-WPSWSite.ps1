@@ -1,4 +1,5 @@
 function Set-WPSWSite(){
+    [CmdletBinding(SupportsShouldProcess)]
     param(
         # Short name for wilma site
         [Parameter(Mandatory=$true)]
@@ -35,8 +36,9 @@ function Set-WPSWSite(){
             if ($wilma_cred) { $config.sites[$site].cred = $wilma_cred}
 
             if ($DefaultSite) { $config['default'] = $site}
-
-            Export-Configuration $config
+            If ($PSCmdlet.ShouldProcess("ShouldProcess?")) {
+                Export-Configuration $config
+            }
             $config
 
         }

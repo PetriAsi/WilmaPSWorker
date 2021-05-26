@@ -15,6 +15,6 @@ Function Get-SHA1StringHash() {
     $ResultHash = $sha1.ComputeHash($data)
     # To return string
     $StringBuilder = New-Object System.Text.StringBuilder
-    $ResultHash|ForEach{ [Void]$StringBuilder.Append($_.ToString("x2")) }
+    $ResultHash|ForEach-Object{ [Void]$StringBuilder.Append($_.ToString("x2")) }
     $StringBuilder.tostring()
 }
