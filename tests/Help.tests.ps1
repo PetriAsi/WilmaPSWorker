@@ -1,16 +1,16 @@
 # Taken with love from @juneb_get_help (https://raw.githubusercontent.com/juneb/PesterTDD/master/Module.Help.Tests.ps1)
-
+function script:FilterOutCommonParams {
+    param ($Params)
+    $commonParams = @(
+        'Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable',
+        'OutBuffer', 'OutVariable', 'PipelineVariable', 'Verbose', 'WarningAction',
+        'WarningVariable', 'Confirm', 'Whatif'
+    )
+    $params | Where-Object { $_.Name -notin $commonParams } | Sort-Object -Property Name -Unique
+}
 BeforeDiscovery {
 
-    function script:FilterOutCommonParams {
-        param ($Params)
-        $commonParams = @(
-            'Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable',
-            'OutBuffer', 'OutVariable', 'PipelineVariable', 'Verbose', 'WarningAction',
-            'WarningVariable', 'Confirm', 'Whatif'
-        )
-        $params | Where-Object { $_.Name -notin $commonParams } | Sort-Object -Property Name -Unique
-    }
+
 
     $manifest             = Import-PowerShellDataFile -Path $env:BHPSModuleManifest
     $outputDir            = Join-Path -Path $env:BHProjectPath -ChildPath 'Output'
