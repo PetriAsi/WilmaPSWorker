@@ -38,7 +38,7 @@ function Get-WPSWSession (){
     }
 
     if ($result.LoginResult -ne "OK") {
-    Throw "Kirjautuminen epäonnistui"
+      Throw "Kirjautuminen epäonnistui"
     } else {
       @{WilmaSession=$WilmaSession
         Result = $result}
