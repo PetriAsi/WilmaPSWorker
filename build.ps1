@@ -34,6 +34,9 @@ if ($Bootstrap.IsPresent) {
     } else {
         Write-Warning 'No [requirements.psd1] found. Skipping build dependency installation.'
     }
+} else {
+    Write-Warning 'NO Bootstap ispresent'
+
 }
 
 # Execute psake task(s)
