@@ -1,8 +1,8 @@
-function Get-WPWSSite(){
+function Get-WPSWSite(){
     param(
         [string]$site
     )
-    $config = Get-WPSWConfig
+    $config = Get-WPSWConfig -all
     if($config.sites) {
         If(! $site ) {
             $config.sites

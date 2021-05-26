@@ -1,4 +1,4 @@
-function New-WPWSSite(){
+function New-WPSWSite(){
     param(
         # Short name for wilma site
         [Parameter(Mandatory=$true)]
@@ -17,11 +17,16 @@ function New-WPWSSite(){
 
         # Wilma usercredential
         [Parameter(Mandatory=$true)]
-        [object]
-        $wilma_cred = (get-credential ))
+        [PSCredential]
+        $wilma_cred
+        )
 
 
-        $config = Get-WPSWConfig
+        $config = Get-WPSWConfig -all
+
+        if(! $config.sites){
+            $config.sites = @{}
+        }
 
         if($config.sites[$site]) {
             Write-Error "Site $site already exists."
@@ -34,7 +39,7 @@ function New-WPWSSite(){
             }
 
             $config.sites[$site] = $newsite
-            Export-Configuration
+            Export-Configuration $config
         }
 
 }
