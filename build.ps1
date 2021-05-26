@@ -22,16 +22,17 @@ $ErrorActionPreference = 'Stop'
 
 # Bootstrap dependencies
 if ($Bootstrap.IsPresent) {
+    #unload older pester
+    if(Get-Module -Name Pester) {
+        Remove-Module -Name Pester
+    }
     Get-PackageProvider -Name Nuget -ForceBootstrap | Out-Null
     Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
     if ((Test-Path -Path ./requirements.psd1)) {
         if (-not (Get-Module -Name PSDepend -ListAvailable)) {
             Install-Module -Name PSDepend -Repository PSGallery -Scope CurrentUser -Force
         }
-        #unload older pester
-        if(Get-Module -Name Pester) {
-            Remove-Module -Name Pester
-        }
+
         Import-Module -Name PSDepend -Verbose:$false
         Invoke-PSDepend -Path './requirements.psd1' -Install -Import -Force -WarningAction SilentlyContinue
         Write-Warning "Requirements loaded"
