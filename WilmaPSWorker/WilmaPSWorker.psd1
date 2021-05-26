@@ -24,7 +24,7 @@ GUID = 'e3692be6-afeb-44bd-8f80-3aa7dfa225d1'
 Author = 'Petri Asikainen'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'Sataedu'
 
 # Copyright statement for this module
 Copyright = '(c) 2021 Petri Asikainen. All rights reserved.'
@@ -51,7 +51,7 @@ Description = 'Tools for Visma Wilma'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+RequiredModules = @('Configuration')
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
