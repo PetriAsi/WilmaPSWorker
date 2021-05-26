@@ -16,3 +16,14 @@ test_script:
   - ps:   if ($env:PowerShellEdition -eq 'WindowsPowerShell') { . .\build.ps1 -Task Test }
   - pwsh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Task Test }
 
+deploy:
+    provider: GitHub
+    release: v$(appveyor_build_version)
+    description: ''
+    auth_token:
+        secure: TIE6vf/OAY070tpQEUC4Uv8DP8TxWf/MKMEzIew4zFlNyUsnK7IGT/PhPpg2zkuG
+    draft: false
+    prerelease: false
+    on:
+        branch: master                  # release from master branch only
+        appveyor_repo_tag: false
