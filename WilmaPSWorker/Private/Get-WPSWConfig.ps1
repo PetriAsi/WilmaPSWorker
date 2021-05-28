@@ -2,13 +2,13 @@ function Get-WPSWConfig(){
     [CmdletBinding()]
     param(
         [string]
-        $server = 'DEFAULT',
+        $site = 'DEFAULT',
         [switch]
         $all = $false
     )
 
     Write-Verbose "Get-WPSWConfig"
-    Write-Debug "server : $server all: $all"
+    Write-Debug "Site : $server all: $all"
     $config = Import-Configuration
 
     Write-Verbose "Got config"
@@ -16,17 +16,17 @@ function Get-WPSWConfig(){
 
     if(! $all){
         if($config.sites.Keys.Count -eq 1){
-            Write-Verbose "just one server, return it"
+            Write-Verbose "just one site, return it"
             $config.sites[$config.sites.Keys[0]]
         } else {
-            if($server -eq 'DEFAULT'){
-                $server = $config.default
+            if($site -eq 'DEFAULT'){
+                $site = $config.default
                 Write-Verbose "selected DEFAULT server: $server"
             }
             if($config.sites.ContainsKey($server)) {
-                $config.sites[$server]
+                $config.sites[$site]
             } else {
-                Throw "Server $server not found"
+                Throw "Site $site not found"
             }
 
         }

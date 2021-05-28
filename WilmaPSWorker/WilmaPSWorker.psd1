@@ -33,7 +33,7 @@ Copyright = '(c) 2021 Petri Asikainen. All rights reserved.'
 Description = 'Tools for Visma Wilma'
 
 # Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '7.1'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -73,7 +73,13 @@ FunctionsToExport = @(
    'Get-WPSWSite',
    'New-WPSWSite',
    'Set-WPSWSite',
-   'Get-WPSWSession'
+   'Connect-WPSWSession',
+   'Get-WPSWCurrentSession',
+   'Get-WPSWStudentPhoto',
+   'Get-WPSWMessage',
+   'Get-WPSWGroup',
+   'Get-WPSWPrintout',
+   'Send-WPSWAttachment'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.

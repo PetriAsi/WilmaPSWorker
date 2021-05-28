@@ -1,11 +1,11 @@
-function Get-WPSWSession (){
+function New-WPSWSession (){
     [CmdletBinding()]
     param(
       [string]
-      $server = 'DEFAULT'
+      $site = 'DEFAULT'
     )
 
-    $config = Get-WPSWConfig -server $server
+    $config = Get-WPSWConfig -site $site
 
     Write-Verbose "Starting Get-WPSWSession"
     Write-Debug "Config: $config"
@@ -38,10 +38,13 @@ function Get-WPSWSession (){
     }
 
     if ($result.LoginResult -ne "OK") {
+      Write-Debug $result
       Throw "Kirjautuminen epäonnistui"
     } else {
       @{WilmaSession=$WilmaSession
-        Result = $result}
+        Result = $result
+        config = $config
+        Site   = $site}
     }
 
 }
