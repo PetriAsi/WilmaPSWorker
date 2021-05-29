@@ -24,7 +24,7 @@ function Send-WPSWAttachment (){
       # File to attach
       [Parameter(Mandatory=$true)]
       [string]
-      $file
+      $toAttach
 
     )
     begin{
@@ -37,8 +37,12 @@ function Send-WPSWAttachment (){
         explearningplaces = 'tyossaopp'
         skilldemo = 'suornaytot'
       }
+
+      $referer = "$($WPSWSession.config.url)$($basepath)?tid=$card_id&tdb=$($database_ids[$Database])&formid=$form_id"
+      Write-Debug "generated referer: $referer"
+
       try {
-        $file = get-item -Path $file
+        $fileItem = get-item -Path $toAttach
       }
       catch {
         throw "Send-WPSWAttachment : Cannot find file $file"
@@ -49,14 +53,8 @@ function Send-WPSWAttachment (){
       $multipartContent = [System.Net.Http.MultipartFormDataContent]::new()
 
       $stringHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
-      $stringHeader.Name = "tid"
-      $StringContent = [System.Net.Http.StringContent]::new($card_id)
-      $StringContent.Headers.ContentDisposition = $stringHeader
-      $multipartContent.Add($stringContent)
-
-      $stringHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
-      $stringHeader.Name = "tdb"
-      $StringContent = [System.Net.Http.StringContent]::new($database_ids[$Database])
+      $stringHeader.Name = "formkey"
+      $StringContent = [System.Net.Http.StringContent]::new($WPSWSession.Result.FormKey)
       $StringContent.Headers.ContentDisposition = $stringHeader
       $multipartContent.Add($stringContent)
 
@@ -67,21 +65,37 @@ function Send-WPSWAttachment (){
       $multipartContent.Add($stringContent)
 
       $stringHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
-      $stringHeader.Name = "formkey"
-      $StringContent = [System.Net.Http.StringContent]::new($WPSWSession.Result.FormKey)
+      $stringHeader.Name = "targetid"
+      $StringContent = [System.Net.Http.StringContent]::new($card_id)
       $StringContent.Headers.ContentDisposition = $stringHeader
       $multipartContent.Add($stringContent)
 
-      $multipartFile = $file
+      $stringHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
+      $stringHeader.Name = "targetdb"
+      $StringContent = [System.Net.Http.StringContent]::new($database_ids[$Database])
+      $StringContent.Headers.ContentDisposition = $stringHeader
+      $multipartContent.Add($stringContent)
+
+
+      $multipartFile = $fileItem.FullName
       $FileStream = [System.IO.FileStream]::new($multipartFile, [System.IO.FileMode]::Open)
       $fileHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
       $fileHeader.Name = "files"
-      $fileHeader.FileName = $file.Name
+      $fileHeader.FileName = $fileItem.Name
       $fileContent = [System.Net.Http.StreamContent]::new($FileStream)
       $fileContent.Headers.ContentDisposition = $fileHeader
       $fileContent.Headers.ContentType = [System.Net.Http.Headers.MediaTypeHeaderValue]::Parse("application/octet-stream")
       $multipartContent.Add($fileContent)
 
+
+      $Headers = @{
+        referer = $referer
+        origin = $WPSWSession.config.url
+        dnt = 1
+        accept = "application/json, text/javascript, */*; q=0.01"
+      }
+
+      Write-Verbose $multipartContent.Headers
     }
 
     process {
@@ -89,7 +103,7 @@ function Send-WPSWAttachment (){
 
       try {
         Write-Verbose "$($WPSWSession.config.url)$basepath"
-        $result = Invoke-WebRequest -Method Post -Uri "$($WPSWSession.config.url)$basepath"  -ContentType 'multipart/form-data' -Body $multipartContent -WebSession $WPSWSession.WilmaSession
+        $result = Invoke-WebRequest  -Method Post  -Headers $Headers   -Uri "$($WPSWSession.config.url)$basepath"  -ContentType 'multipart/form-data' -Body $multipartContent -WebSession $WPSWSession.WilmaSession
         if($result.Statuscode -ne 200){
           Write-Warning "Problem generating printout. Statuscode $($result.Statuscode) "
         }
