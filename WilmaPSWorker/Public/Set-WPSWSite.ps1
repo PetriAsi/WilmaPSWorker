@@ -27,6 +27,10 @@ function Set-WPSWSite(){
          [string]
          $pq_host,
 
+         # Primusquery port
+         [string]
+         $pq_port,
+
          # Creadential to use with primusquery
          [Parameter(ParameterSetName = "PQ")]
 
@@ -54,6 +58,11 @@ function Set-WPSWSite(){
             if ($wilma_url) { $config.sites[$site].url = $wilma_url}
             if ($wilma_apikey) { $config.sites[$site].apikey = $wilma_apikey}
             if ($wilma_cred) { $config.sites[$site].cred = $wilma_cred}
+
+            if ($pq_host) { $config.sites[$site].pq_host = $pq_host}
+            if ($pq_port) { $config.sites[$site].pq_port = $pq_port}
+            if ($pq_cred) { $config.sites[$site].pq_cred = $pq_cred}
+            if ($pq_exe) { $config.sites[$site].pq_exe = $pq_exe}
 
             if ($DefaultSite) { $config['default'] = $site}
             If ($PSCmdlet.ShouldProcess("ShouldProcess?")) {
