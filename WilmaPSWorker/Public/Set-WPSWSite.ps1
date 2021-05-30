@@ -7,16 +7,36 @@ function Set-WPSWSite(){
         $site,
 
         # Wilma site url
+        [Parameter(ParameterSetName = "Wilma")]
         [string]
         $wilma_url,
 
         # Wilma api-key
+        [Parameter(ParameterSetName = "Wilma")]
         [string]
         $wilma_apikey,
 
         # Wilma usercredential
+        [Parameter(ParameterSetName = "Wilma")]
         [PSCredential]
         $wilma_cred,
+
+
+         # Primusquery host
+         [Parameter(ParameterSetName = "PQ")]
+         [string]
+         $pq_host,
+
+         # Creadential to use with primusquery
+         [Parameter(ParameterSetName = "PQ")]
+
+         [PSCredential]
+         $pq_cred,
+
+         # Path to primusquery excutable
+         [Parameter(ParameterSetName = "PQ")]
+         [string]
+         $pq_exe,
 
         # set Site as default
         [switch]

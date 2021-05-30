@@ -1,6 +1,10 @@
 <#
 .SYNOPSIS
-Connects to wilma site
+Connects to wilma site and  selects primusquery credentials
+
+.DESCRIPTION
+Connect to wilma site, establish websession and selects primusquery credentials to use.
+
 #>
 function Connect-WPSWSession (){
     [CmdletBinding()]

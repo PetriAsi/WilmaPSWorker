@@ -104,8 +104,16 @@ function Send-WPSWAttachment (){
       try {
         Write-Verbose "$($WPSWSession.config.url)$basepath"
         $result = Invoke-WebRequest  -Method Post  -Headers $Headers   -Uri "$($WPSWSession.config.url)$basepath"  -ContentType 'multipart/form-data' -Body $multipartContent -WebSession $WPSWSession.WilmaSession
-        if($result.Statuscode -ne 200){
-          Write-Warning "Problem generating printout. Statuscode $($result.Statuscode) "
+
+        #Add $result.content check as almost all requests are returning 200
+        try {$content = $result.content | ConvertFrom-Json
+        }
+        catch {
+          Write-error "Send-WPSWAttachment cant parse upload results"
+        }
+
+        if($result.Statuscode -ne 200 -or ($null -eq $content.files )){
+          Write-Warning "Problem uploading attachment. Statuscode $($result.Statuscode) Content: $($result.content) "
         }
         $result
       }
