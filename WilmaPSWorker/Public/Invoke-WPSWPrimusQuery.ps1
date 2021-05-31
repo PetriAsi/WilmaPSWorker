@@ -111,6 +111,7 @@ function Invoke-WPSWPrimusQuery  {
             $parsed = Import-Csv @csvparms
           }
           catch {
+            $ErrorMessage = $_.Exception.Message
             Write-host "Error when trying to parse query results $OutFile to csv:`r$ErrorMessage"
           }
         }
