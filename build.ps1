@@ -25,6 +25,7 @@ if ($Bootstrap.IsPresent) {
 
     Get-PackageProvider -Name Nuget -ForceBootstrap | Out-Null
     Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+    Remove-Module Pester -Force
     if ((Test-Path -Path ./requirements.psd1)) {
         if (-not (Get-Module -Name PSDepend -ListAvailable)) {
             Install-Module -Name PSDepend -Repository PSGallery -Scope CurrentUser -Force
@@ -32,8 +33,9 @@ if ($Bootstrap.IsPresent) {
 
         Import-Module -Name PSDepend -Verbose:$false
         Invoke-PSDepend -Path './requirements.psd1' -Install -Import -Force -WarningAction SilentlyContinue
-        Write-Warning "Requirements loaded"
+        Write-Host "Requirements loaded"
         Get-Module
+        $env:releasePath = "$($pwd.Path)\Release"
     } else {
         Write-Warning 'No [requirements.psd1] found. Skipping build dependency installation.'
     }
