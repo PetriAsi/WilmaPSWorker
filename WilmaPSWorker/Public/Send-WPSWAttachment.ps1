@@ -118,7 +118,8 @@ function Send-WPSWAttachment (){
         $result
       }
       catch{
-        Write-Error "Could not upload attachment."
+        $ErrorMessage = $_.Exception.Message
+        Write-Error "Could not upload attachment. $ErrorMessage"
       }
   }
 }

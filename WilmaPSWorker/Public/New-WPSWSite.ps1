@@ -25,6 +25,10 @@ function New-WPSWSite(){
          [string]
          $pq_host,
 
+         # Primusquery port
+         [string]
+         $pq_port,
+
          # Creadential to use with primusqueryetName = "PQ")]
 
          [PSCredential]
@@ -55,6 +59,7 @@ function New-WPSWSite(){
 
 
             if ($pq_host) { $newsite.pq_host = $pq_host}
+            if ($pq_port) { $newsite.pq_port = $pq_port}
             if ($pq_cred) { $newsite.pq_cred = $pq_cred}
             if ($pq_exe)  { $newsite.pq_exe = $pq_exe}
 

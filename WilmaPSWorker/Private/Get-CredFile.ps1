@@ -4,8 +4,9 @@ function Get-CredFile(){
         [pscredential]
         $cred
     )
+
     $pwdfile = [System.IO.Path]::GetTempFileName()
-    $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($config.Credential.password)
+    $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($cred.Password)
     $UnsecurePassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
     [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($BSTR)
     $UnsecurePassword |Out-File -encoding utf8 $pwdfile
