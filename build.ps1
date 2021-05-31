@@ -25,7 +25,7 @@ if ($Bootstrap.IsPresent) {
 
     Get-PackageProvider -Name Nuget -ForceBootstrap | Out-Null
     Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-    Remove-Module Pester -Force
+
     if ((Test-Path -Path ./requirements.psd1)) {
         if (-not (Get-Module -Name PSDepend -ListAvailable)) {
             Install-Module -Name PSDepend -Repository PSGallery -Scope CurrentUser -Force
