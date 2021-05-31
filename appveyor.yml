@@ -1,19 +1,20 @@
-version: 0.1.0.{build}
+version: 0.1.{build}
 
 environment:
   matrix:
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       PowerShellEdition: PowerShellCore
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      PowerShellEdition: WindowsPowerShell
 
 skip_commits:
   message: /updated readme.*|update readme.*s/
+
+install:
+    - pwsh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Bootstrap }
+
 build: off
 
 # Kick off the CI/CD pipeline
 test_script:
-  - ps:   if ($env:PowerShellEdition -eq 'WindowsPowerShell') { . .\build.ps1 -Task Test }
   - pwsh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Task Test }
 
 deploy:

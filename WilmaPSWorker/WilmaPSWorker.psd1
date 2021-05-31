@@ -12,7 +12,7 @@
 RootModule = 'WilmaPSWorker.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion = '0.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -24,7 +24,7 @@ GUID = 'e3692be6-afeb-44bd-8f80-3aa7dfa225d1'
 Author = 'Petri Asikainen'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'Sataedu'
 
 # Copyright statement for this module
 Copyright = '(c) 2021 Petri Asikainen. All rights reserved.'
@@ -33,7 +33,7 @@ Copyright = '(c) 2021 Petri Asikainen. All rights reserved.'
 Description = 'Tools for Visma Wilma'
 
 # Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '7.1'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -51,7 +51,7 @@ Description = 'Tools for Visma Wilma'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+RequiredModules = @('Configuration')
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
@@ -69,16 +69,30 @@ Description = 'Tools for Visma Wilma'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = '*'
+FunctionsToExport = @(
+   'Get-WPSWSite',
+   'New-WPSWSite',
+   'Set-WPSWSite',
+   'Connect-WPSWSession',
+   'Get-WPSWCurrentSession',
+   'Get-WPSWStudentPhoto',
+   'Get-WPSWMessage',
+   'Get-WPSWGroup',
+   'Get-WPSWPrintout',
+   'Send-WPSWAttachment',
+   'Invoke-WPSWPrimusQuery',
+   'Get-WPSWRecipient',
+   'Send-WPSWMessage'
+)
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = '*'
+#CmdletsToExport = '*'
 
 # Variables to export from this module
-VariablesToExport = '*'
+#VariablesToExport = '*'
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = '*'
+#AliasesToExport = '*'
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()

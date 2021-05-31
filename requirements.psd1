@@ -3,7 +3,7 @@
         Target = 'CurrentUser'
     }
     'Pester' = @{
-        Version = '5.1.1'
+        Version = '5.2.2'
         Parameters = @{
             SkipPublisherCheck = $true
         }
@@ -19,5 +19,8 @@
     }
     'PSScriptAnalyzer' = @{
         Version = '1.19.1'
+    }
+    'Configuration' = @{
+        Version = '1.3.1'
     }
 }
