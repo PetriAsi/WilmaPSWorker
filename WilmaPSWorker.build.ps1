@@ -149,8 +149,9 @@ task UpdateManifest GetVersion, {
     Write-Build Gray ('Update manifest releasePath:         {0}' -f $releasePath.ToString())
     Write-Build Gray ('Update manifest BuildRoot:         {0}' -f $BuildRoot.ToString())
 
-    $functionsToExport = Get-ChildItem "$BuildRoot\WilmaPSWorker\Public" | ForEach-Object {$_.BaseName}
-    Set-ModuleFunctions -Name "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -FunctionsToExport $functionsToExport
+    #Updated by hand
+    #$functionsToExport = Get-ChildItem "$BuildRoot\WilmaPSWorker\Public" | ForEach-Object {$_.BaseName}
+    #Set-ModuleFunctions -Name "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -FunctionsToExport $functionsToExport
 }
 
 task GetVersion {
