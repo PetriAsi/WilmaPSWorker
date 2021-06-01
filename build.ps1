@@ -25,7 +25,7 @@ function Run-Tests
     $results = Invoke-Pester -PassThru
     if($results.FailedCount -gt 0) {
        Write-Output "  > $($results.FailedCount) tests failed. The build cannot continue."
-       foreach($result in $($results.TestResult | Where {$_.Passed -eq $false} | Select-Object -Property Describe,Context,Name,Passed,Time)){
+       foreach($result in $($results.TestResult | Where-object {$_.Passed -eq $false} | Select-Object -Property Describe,Context,Name,Passed,Time)){
             Write-Output "    > $result"
        }
 

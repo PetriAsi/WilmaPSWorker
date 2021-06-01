@@ -142,6 +142,9 @@ task GenerateRelease CreateHelp, {
 
 # Synopsis: Update the manifest of the module
 task UpdateManifest GetVersion, {
+    Write-Build Gray ('Update manifest releasePath:         {0}' -f $releasePath.ToString())
+    Write-Build Gray ('Update manifest BuildRoot:         {0}' -f $BuildRoot.ToString())
+
     Update-Metadata -Path "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -PropertyName ModuleVersion -Value $script:Version
     $functionsToExport = Get-ChildItem "$BuildRoot\WilmaPSWorker\Public" | ForEach-Object {$_.BaseName}
     Set-ModuleFunctions -Name "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -FunctionsToExport $functionsToExport
