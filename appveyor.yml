@@ -46,6 +46,7 @@ install:
         Install-Module platyPS -Scope CurrentUser -Force
         Install-Module Pester -Scope CurrentUser -Force
         Install-Module PSScriptAnalyzer -Scope CurrentUser -Force
+        Import-Module Pester -Force
         $env:releasePath = "$($pwd.Path)\Release"
 
 before_build:
