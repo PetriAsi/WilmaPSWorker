@@ -99,7 +99,26 @@ task TestPS7 {
 # Synopsis: Invoke Pester Tests
 task PesterTests CreateHelp, {
     try {
-        $result = Invoke-Pester -PassThru -OutputFile "$BuildRoot\TestResult.xml" -OutputFormat "NUnitXml"
+        $configuration = [PesterConfiguration]@{
+            Run = @{
+                Path = $testFile
+            }
+            Output = @{
+                Verbosity = 'Detailed'
+            }
+            Filter = @{
+                Tag = 'Acceptance'
+                ExcludeTag = 'WindowsOnly'
+            }
+            Should = @{
+                ErrorAction = 'Continue'
+            }
+            CodeCoverage = @{
+                Enable = $true
+                OutputPath = "$BuildRoot\TestResult.xml"
+            }
+        }
+        $result = Invoke-Pester -Configuration $configuration
         if ($env:APPVEYOR_PROJECT_NAME) {
             Add-TestResultToAppveyor -TestFile "$BuildRoot\TestResult.xml"
             Remove-Item "$BuildRoot\TestResult.xml" -Force
