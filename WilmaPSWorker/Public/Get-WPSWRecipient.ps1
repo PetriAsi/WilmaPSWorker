@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Get possible recipients
+Seach or get possible recipients
 #>
 function Get-WPSWRecipient (){
     [CmdletBinding()]

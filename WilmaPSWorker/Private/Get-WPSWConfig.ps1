@@ -1,3 +1,7 @@
+<#
+.Synopsis
+Gets modules configuration, sites and other settings.
+#>
 function Get-WPSWConfig(){
     [CmdletBinding()]
     param(

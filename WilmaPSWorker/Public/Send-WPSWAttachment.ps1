@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Get pdf printout from generic databases
+Uoloads attachment to wilma
 #>
 function Send-WPSWAttachment (){
     [CmdletBinding()]

@@ -7,6 +7,15 @@ environment:
 
 skip_commits:
   message: /updated readme.*|update readme.*s/
+  message: /skip\-tests/
+  files:
+    - .github/
+    - .vscode/
+    - assets/
+    - Tools/
+    - README.md
+    - .gitattributes
+    - .gitignore
 
 install:
     - pwsh: if ($env:PowerShellEdition -eq 'PowerShellCore')    { . .\build.ps1 -Bootstrap }

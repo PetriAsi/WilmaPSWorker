@@ -1,3 +1,7 @@
+<#
+.Synopsis
+Converts credential to tmpfile
+#>
 function Get-CredFile(){
     param(
         [parameter(Mandatory=$true)]

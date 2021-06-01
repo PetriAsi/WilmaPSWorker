@@ -1,3 +1,7 @@
+<#
+.Synopsis
+Connects to Wilma and sets session variables
+#>
 function New-WPSWSession (){
     [CmdletBinding()]
     param(

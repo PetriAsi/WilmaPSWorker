@@ -1,4 +1,9 @@
-function Set-WPSWSite(){
+<#
+.Synopsis
+Set site settings
+.Description
+Changes site defination, urls , hostnames or credentials used to connect Wilma or Primus
+#>function Set-WPSWSite(){
     [CmdletBinding(SupportsShouldProcess)]
     param(
         # Short name for wilma site

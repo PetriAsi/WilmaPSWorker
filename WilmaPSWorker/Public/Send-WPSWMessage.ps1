@@ -67,7 +67,7 @@ function Send-WPSWMessage (){
       [int[]]
       $r_group,
 
-      #teacher of the group
+      #teacher ID of the group
       [Parameter(Mandatory=$false)]
       [int[]]
       $r_groupguardian
@@ -114,6 +114,7 @@ function Send-WPSWMessage (){
           $res=$ResponseHeader|ConvertTo-Json
           Write-Error "Unknown status when sending message. Try -Debug"
           Write-Debug $res
+          Write-Debug $result
         }
 
       }

@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Get messages
+Get groups
 #>
 function Get-WPSWGroup (){
     [CmdletBinding()]

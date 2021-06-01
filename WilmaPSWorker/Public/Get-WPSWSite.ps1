@@ -1,3 +1,7 @@
+<#
+.Synopsis
+Gets all Wilma site settings or specific site settings
+#>
 function Get-WPSWSite(){
     param(
         [string]$site

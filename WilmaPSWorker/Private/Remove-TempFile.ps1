@@ -1,3 +1,7 @@
+<#
+.Synopsis
+Overwrites or wipes temp files before removing.
+#>
 function Remove-TempFile {
     param (
     [Parameter(Mandatory=$true)]

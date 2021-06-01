@@ -1,3 +1,9 @@
+<#
+.Synopsis
+Creates new Wilma site , addresses and needed credentials.
+.Description
+Setup new site to connect Wilma via http and/or Primus with primusquery.
+#>
 function New-WPSWSite(){
     [CmdletBinding(SupportsShouldProcess)]
     param(
