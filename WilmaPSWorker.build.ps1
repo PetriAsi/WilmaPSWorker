@@ -138,9 +138,6 @@ task GenerateRelease CreateHelp, {
 
     # Copy module
     Copy-Item -Path "$BuildRoot\WilmaPSWorker\*" -Destination "$releasePath\WilmaPSWorker" -Recurse -Force
-    Write-Build Gray ('GenerateRelease releasePath:         {0}' -f $releasePath.ToString())
-    Write-Build Gray ('GenerateRelease BuildRoot:         {0}' -f $BuildRoot.ToString())
-    get-item "$releasePath\WilmaPSWorker\*"
 
     # Copy additional files
     $additionalFiles = @(
@@ -153,8 +150,6 @@ task GenerateRelease CreateHelp, {
 
 # Synopsis: Update the manifest of the module
 task UpdateManifest GetVersion, {
-    Write-Build Gray ('Update manifest releasePath:         {0}' -f $releasePath.ToString())
-    Write-Build Gray ('Update manifest BuildRoot:         {0}' -f $BuildRoot.ToString())
 
     #Updated by hand
     #$functionsToExport = Get-ChildItem "$BuildRoot\WilmaPSWorker\Public" | ForEach-Object {$_.BaseName}
