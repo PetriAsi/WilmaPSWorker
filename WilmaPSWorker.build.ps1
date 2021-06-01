@@ -131,6 +131,10 @@ task GenerateRelease CreateHelp, {
 
     # Copy module
     Copy-Item -Path "$BuildRoot\WilmaPSWorker\*" -Destination "$releasePath\WilmaPSWorker" -Recurse -Force
+    Write-Build Gray ('Update manifest releasePath:         {0}' -f $releasePath.ToString())
+    Write-Build Gray ('Update manifest BuildRoot:         {0}' -f $BuildRoot.ToString())
+    get-item "$releasePath\WilmaPSWorker"
+
     # Copy additional files
     $additionalFiles = @(
         "$BuildRoot\CHANGELOG.md"
@@ -142,7 +146,9 @@ task GenerateRelease CreateHelp, {
 
 # Synopsis: Update the manifest of the module
 task UpdateManifest GetVersion, {
-    Update-Metadata -Path "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -PropertyName ModuleVersion -Value $script:Version
+    Write-Build Gray ('Update manifest releasePath:         {0}' -f $releasePath.ToString())
+    Write-Build Gray ('Update manifest BuildRoot:         {0}' -f $BuildRoot.ToString())
+
     $functionsToExport = Get-ChildItem "$BuildRoot\WilmaPSWorker\Public" | ForEach-Object {$_.BaseName}
     Set-ModuleFunctions -Name "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -FunctionsToExport $functionsToExport
 }
