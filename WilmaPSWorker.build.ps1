@@ -100,7 +100,7 @@ task TestPS7 {
 task PesterTests CreateHelp, {
     try {
         $configuration = new-pesterconfiguration
-        $configuration.Output.Verbosity = 'Detailed'
+#        $configuration.Output.Verbosity = 'Detailed'
         $configuration.Should.ErrorAction = 'Continue'
         $configuration.CodeCoverage.Enabled = $true
         $configuration.CodeCoverage.OutputPath = "$BuildRoot\TestResult.xml"
