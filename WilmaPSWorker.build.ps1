@@ -131,9 +131,9 @@ task GenerateRelease CreateHelp, {
 
     # Copy module
     Copy-Item -Path "$BuildRoot\WilmaPSWorker\*" -Destination "$releasePath\WilmaPSWorker" -Recurse -Force
-    Write-Build Gray ('Update manifest releasePath:         {0}' -f $releasePath.ToString())
-    Write-Build Gray ('Update manifest BuildRoot:         {0}' -f $BuildRoot.ToString())
-    get-item "$releasePath\WilmaPSWorker"
+    Write-Build Gray ('GenerateRelease releasePath:         {0}' -f $releasePath.ToString())
+    Write-Build Gray ('GenerateRelease BuildRoot:         {0}' -f $BuildRoot.ToString())
+    get-item "$releasePath\WilmaPSWorker\*"
 
     # Copy additional files
     $additionalFiles = @(
