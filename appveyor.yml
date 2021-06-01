@@ -7,10 +7,10 @@
 #
 ############################################################
 
-# This tells AppVeyor that we need WMF 5 and PowerShell 5.0
-os: WMF 5
-
 environment:
+  matrix:
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      PowerShellEdition: PowerShellCore
   PSGalleryAPIKey:
     secure: UJvaolsT35KOWl+E5GGISO4pdWLxj6hATx4UHA+VXLyif1tlFOiGQZitMun8HEFZ
 
