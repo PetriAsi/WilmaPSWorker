@@ -1,53 +1,101 @@
-[cmdletbinding(DefaultParameterSetName = 'Task')]
 param(
-    # Build task(s) to execute
-    [parameter(ParameterSetName = 'task', position = 0)]
-    [string[]]$Task = 'default',
-
-    # Bootstrap dependencies
-    [switch]$Bootstrap,
-
-    # List available build tasks
-    [parameter(ParameterSetName = 'Help')]
-    [switch]$Help,
-
-    # Optional properties to pass to psake
-    [hashtable]$Properties,
-
-    # Optional parameters to pass to psake
-    [hashtable]$Parameters
+    [string[]]$Tasks
 )
 
-$ErrorActionPreference = 'Stop'
 
-# Bootstrap dependencies
-if ($Bootstrap.IsPresent) {
 
-    Get-PackageProvider -Name Nuget -ForceBootstrap | Out-Null
-    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+function Install-Dependency([string] $Name)
+{
+    $policy = Get-PSRepository -Name "PSGallery" | Select-Object -ExpandProperty "InstallationPolicy"
+    if($policy -ne "Trusted") {
+        Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+    }
 
-    if ((Test-Path -Path ./requirements.psd1)) {
-        if (-not (Get-Module -Name PSDepend -ListAvailable)) {
-            Install-Module -Name PSDepend -Repository PSGallery -Scope CurrentUser -Force
-        }
-
-        Import-Module -Name PSDepend -Verbose:$false
-        Invoke-PSDepend -Path './requirements.psd1' -Install -Import -Force -WarningAction SilentlyContinue
-        Write-Host "Requirements loaded"
-        Get-Module
-        $env:releasePath = "$($pwd.Path)\Release"
-    } else {
-        Write-Warning 'No [requirements.psd1] found. Skipping build dependency installation.'
+    if (!(Get-Module -Name $Name -ListAvailable)) {
+        Install-Module -Name $Name -Scope CurrentUser
     }
 }
 
-# Execute psake task(s)
-$psakeFile = './psakeFile.ps1'
-if ($PSCmdlet.ParameterSetName -eq 'Help') {
-    Get-PSakeScriptTasks -buildFile $psakeFile |
-        Format-Table -Property Name, Description, Alias, DependsOn
-} else {
-    Set-BuildEnvironment -Force
-    Invoke-psake -buildFile $psakeFile -taskList $Task -nologo -properties $Properties -parameters $Parameters
-    exit ([int](-not $psake.build_success))
+function Run-Tests
+{
+    param(
+        [string]$Path = "$PSScriptRoot\WilmaPSWorker"
+    )
+
+    $results = Invoke-Pester -PassThru
+    if($results.FailedCount -gt 0) {
+       Write-Output "  > $($results.FailedCount) tests failed. The build cannot continue."
+       foreach($result in $($results.TestResult | Where {$_.Passed -eq $false} | Select-Object -Property Describe,Context,Name,Passed,Time)){
+            Write-Output "    > $result"
+       }
+
+       EXIT 1
+    }
+}
+
+function Release
+{
+    Write-Output "Setting Variables"
+    $BuildRoot = $env:CI_PROJECT_DIR
+    $releasePath = "$BuildRoot\Release"
+
+    Write-Output "Build Root : $BuildRoot"
+    Write-Output "Release Root : $releasePath"
+
+    if (-not (Test-Path "$releasePath\WilmaPSWorker")) {
+        $null = New-Item -Path "$releasePath\WilmaPSWorker" -ItemType Directory
+    }
+
+    # Copy module
+    Copy-Item -Path "$BuildRoot\WilmaPSWorker\*" -Destination "$releasePath\WilmaPSWorker" -Recurse -Force
+    # Copy additional files
+    $additionalFiles = @(
+        "$BuildRoot\CHANGELOG.md"
+        "$BuildRoot\LICENSE"
+        "$BuildRoot\README.md"
+    )
+    Copy-Item -Path $additionalFiles -Destination "$releasePath\WilmaPSWorker" -Force
+
+
+    $manifestContent = Get-Content -Path "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -Raw
+    if ($manifestContent -notmatch '(?<=ModuleVersion\s+=\s+'')(?<ModuleVersion>.*)(?='')') {
+        throw "Module version was not found in manifest file,"
+    }
+
+    $currentVersion = [Version] $Matches.ModuleVersion
+    if ($env:CI_JOB_ID) {
+        $newRevision = $env:CI_JOB_ID
+    }
+    else {
+        $newRevision = 0
+    }
+    $version = New-Object -TypeName System.Version -ArgumentList $currentVersion.Major,
+    $currentVersion.Minor,
+    $newRevision
+
+    Write-Output "New version : $version"
+
+    Update-Metadata -Path "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -PropertyName ModuleVersion -Value $version
+    $functionsToExport = Get-ChildItem "$BuildRoot\WilmaPSWorker\Public" | ForEach-Object {$_.BaseName}
+    Set-ModuleFunctions -Name "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -FunctionsToExport $functionsToExport
+
+    #Remove-Module WilmaPSWorker
+    Import-Module $env:CI_PROJECT_DIR\WilmaPSWorker\WilmaPSWorker.psd1 -force -ErrorAction Stop
+    Publish-Module -Name WilmaPSWorker -Repository InternalPowerShellModules -NuGetApiKey 123456789
+}
+
+foreach($task in $Tasks){
+    switch($task)
+    {
+        "test" {
+            Install-Dependency -Name "PSScriptAnalyzer"
+            Install-Dependency -Name "Pester"
+            Write-Output "Running Pester Tests..."
+            Run-Tests
+        }
+        "release" {
+            Write-Output "Releasing..."
+            Release
+        }
+    }
 }

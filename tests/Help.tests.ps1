@@ -1,16 +1,16 @@
 # Taken with love from @juneb_get_help (https://raw.githubusercontent.com/juneb/PesterTDD/master/Module.Help.Tests.ps1)
+function scriptFilterOutCommonParams {
+    param ($Params)
+    $commonParams = @(
+        'Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable',
+        'OutBuffer', 'OutVariable', 'PipelineVariable', 'Verbose', 'WarningAction',
+        'WarningVariable', 'Confirm', 'Whatif'
+    )
+    $params | Where-Object { $_.Name -notin $commonParams } | Sort-Object -Property Name -Unique
+}
 
 BeforeDiscovery {
 
-    function script:FilterOutCommonParams {
-        param ($Params)
-        $commonParams = @(
-            'Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable',
-            'OutBuffer', 'OutVariable', 'PipelineVariable', 'Verbose', 'WarningAction',
-            'WarningVariable', 'Confirm', 'Whatif'
-        )
-        $params | Where-Object { $_.Name -notin $commonParams } | Sort-Object -Property Name -Unique
-    }
 
     $manifest             = Import-PowerShellDataFile -Path $env:BHPSModuleManifest
     $outputDir            = Join-Path -Path $env:BHProjectPath -ChildPath 'Output'
@@ -41,7 +41,7 @@ Describe "Test help for <_.Name>" -ForEach $commands {
         # Get command help, parameters, and links
         $command               = $_
         $commandHelp           = Get-Help $command.Name -ErrorAction SilentlyContinue
-        $commandParameters     = script:FilterOutCommonParams -Params $command.ParameterSets.Parameters
+        $commandParameters     = scriptFilterOutCommonParams -Params $command.ParameterSets.Parameters
         $commandParameterNames = $commandParameters.Name
         $helpLinks             = $commandHelp.relatedLinks.navigationLink.uri
     }
@@ -51,9 +51,9 @@ Describe "Test help for <_.Name>" -ForEach $commands {
         $command                = $_
         $commandName            = $_.Name
         $commandHelp            = Get-Help $command.Name -ErrorAction SilentlyContinue
-        $commandParameters      = script:FilterOutCommonParams -Params $command.ParameterSets.Parameters
+        $commandParameters      = scriptFilterOutCommonParams -Params $command.ParameterSets.Parameters
         $commandParameterNames  = $commandParameters.Name
-        $helpParameters         = script:FilterOutCommonParams -Params $commandHelp.Parameters.Parameter
+        $helpParameters         = scriptFilterOutCommonParams -Params $commandHelp.Parameters.Parameter
         $helpParameterNames     = $helpParameters.Name
     }
 
