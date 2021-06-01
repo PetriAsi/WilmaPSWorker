@@ -1,3 +1,7 @@
+<#
+.Synopsis
+Builds SHA1 string for wilma login
+#>
 Function Get-SHA1StringHash() {
     param(
 

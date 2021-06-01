@@ -1,3 +1,10 @@
+<#
+.Synopsis
+Invokes primusquery, exports and imports data from Primus.
+.Description
+Invokes primusquery, exports and imports data from Primus. Exported data can be saved
+to file or processes as XML or CSV formating.
+#>
 function Invoke-WPSWPrimusQuery  {
     param (
     # Queryname on primus

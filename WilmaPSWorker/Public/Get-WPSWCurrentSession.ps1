@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Get current WPSWSession
+Get current WPSWSession settings
 #>
 function Get-WPSWCurrentSession (){
     [CmdletBinding()]

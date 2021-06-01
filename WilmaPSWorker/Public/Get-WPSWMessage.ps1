@@ -1,6 +1,8 @@
 <#
 .SYNOPSIS
 Get messages
+.DESCRIPTION
+Get all wilma messages or messages from selected folder Inbox , Sent , Archive or Drafts.
 #>
 function Get-WPSWMessage (){
     [CmdletBinding()]
