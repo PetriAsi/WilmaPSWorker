@@ -99,25 +99,13 @@ task TestPS7 {
 # Synopsis: Invoke Pester Tests
 task PesterTests CreateHelp, {
     try {
-        $configuration = [PesterConfiguration]@{
-            Run = @{
-                Path = $testFile
-            }
-            Output = @{
-                Verbosity = 'Detailed'
-            }
-            Filter = @{
-                Tag = 'Acceptance'
-                ExcludeTag = 'WindowsOnly'
-            }
-            Should = @{
-                ErrorAction = 'Continue'
-            }
-            CodeCoverage = @{
-                Enable = $true
-                OutputPath = "$BuildRoot\TestResult.xml"
-            }
-        }
+        $configuration = new-pesterconfiguration
+        $configuration.Run.Path = $testfile
+        $configuration.Output.Verbosity = 'Detailed'
+        $configuration.Should.ErrorAction = 'Continue'
+        $configuration.CodeCoverage.Enable = $true
+        $configuration.CodeCoverage.OutputPath = "$BuildRoot\TestResult.xml"
+
         $result = Invoke-Pester -Configuration $configuration
         if ($env:APPVEYOR_PROJECT_NAME) {
             Add-TestResultToAppveyor -TestFile "$BuildRoot\TestResult.xml"
