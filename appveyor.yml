@@ -38,7 +38,7 @@ pull_requests:
   do_not_increment_build_number: true
 
 install:
-    - ps: |
+    - pwsh: |
         Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
         Install-Module InvokeBuild -Scope CurrentUser -Force
         Install-Module BuildHelpers -Scope CurrentUser -Force
@@ -48,19 +48,19 @@ install:
         $env:releasePath = "$($pwd.Path)\Release"
 
 before_build:
-    - ps: Invoke-Build -Task ShowDebug
+    - pwsh: Invoke-Build -Task ShowDebug
 
 build_script:
-    - ps: Invoke-Build -Task Build
+    - pwsh: Invoke-Build -Task Build
 
 # after_build:
     # - cmd: mdspell %releasePath%\**/*.md --ignore-numbers --ignore-acronyms --report
 
 test_script:
-    - ps: Invoke-Build -Task Test
+    - pwsh: Invoke-Build -Task Test
 
 before_deploy:
-    - ps: Invoke-Build -Task Deploy
+    - pwsh: Invoke-Build -Task Deploy
 
 deploy:
     provider: GitHub
