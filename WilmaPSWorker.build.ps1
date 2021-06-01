@@ -19,7 +19,7 @@ else {
 $env:PSModulePath = "$($env:PSModulePath);$releasePath"
 
 Import-Module BuildHelpers
-
+Import-Module Pester -Force
 # Ensure Invoke-Build works in the most strict mode.
 #Set-StrictMode -Version Latest
 
