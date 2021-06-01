@@ -19,7 +19,7 @@ else {
 $env:PSModulePath = "$($env:PSModulePath);$releasePath"
 
 Import-Module BuildHelpers
-
+Import-Module Pester -Force
 # Ensure Invoke-Build works in the most strict mode.
 #Set-StrictMode -Version Latest
 
@@ -99,6 +99,13 @@ task TestPS7 {
 # Synopsis: Invoke Pester Tests
 task PesterTests CreateHelp, {
     try {
+        #$configuration = new-pesterconfiguration
+        #$configuration.Output.Verbosity = 'Detailed'
+        #$configuration.Should.ErrorAction = 'Continue'
+        #$configuration.CodeCoverage.Enabled = $true
+        #$configuration.CodeCoverage.OutputPath = "$BuildRoot\TestResult.xml"
+
+        #$result = Invoke-Pester -Configuration $configuration
         $result = Invoke-Pester -PassThru -OutputFile "$BuildRoot\TestResult.xml" -OutputFormat "NUnitXml"
         if ($env:APPVEYOR_PROJECT_NAME) {
             Add-TestResultToAppveyor -TestFile "$BuildRoot\TestResult.xml"
@@ -131,9 +138,6 @@ task GenerateRelease CreateHelp, {
 
     # Copy module
     Copy-Item -Path "$BuildRoot\WilmaPSWorker\*" -Destination "$releasePath\WilmaPSWorker" -Recurse -Force
-    Write-Build Gray ('Update manifest releasePath:         {0}' -f $releasePath.ToString())
-    Write-Build Gray ('Update manifest BuildRoot:         {0}' -f $BuildRoot.ToString())
-    get-item "$releasePath\WilmaPSWorker"
 
     # Copy additional files
     $additionalFiles = @(
@@ -146,11 +150,10 @@ task GenerateRelease CreateHelp, {
 
 # Synopsis: Update the manifest of the module
 task UpdateManifest GetVersion, {
-    Write-Build Gray ('Update manifest releasePath:         {0}' -f $releasePath.ToString())
-    Write-Build Gray ('Update manifest BuildRoot:         {0}' -f $BuildRoot.ToString())
 
-    $functionsToExport = Get-ChildItem "$BuildRoot\WilmaPSWorker\Public" | ForEach-Object {$_.BaseName}
-    Set-ModuleFunctions -Name "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -FunctionsToExport $functionsToExport
+    #Updated by hand
+    #$functionsToExport = Get-ChildItem "$BuildRoot\WilmaPSWorker\Public" | ForEach-Object {$_.BaseName}
+    #Set-ModuleFunctions -Name "$releasePath\WilmaPSWorker\WilmaPSWorker.psd1" -FunctionsToExport $functionsToExport
 }
 
 task GetVersion {

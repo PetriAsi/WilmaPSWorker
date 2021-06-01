@@ -39,9 +39,6 @@ function Release
     $BuildRoot = $env:CI_PROJECT_DIR
     $releasePath = "$BuildRoot\Release"
 
-    Write-Output "Build Root : $BuildRoot"
-    Write-Output "Release Root : $releasePath"
-
     if (-not (Test-Path "$releasePath\WilmaPSWorker")) {
         $null = New-Item -Path "$releasePath\WilmaPSWorker" -ItemType Directory
     }
