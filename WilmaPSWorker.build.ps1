@@ -103,7 +103,7 @@ task PesterTests CreateHelp, {
         $configuration.Run.Path = $testfile
         $configuration.Output.Verbosity = 'Detailed'
         $configuration.Should.ErrorAction = 'Continue'
-        $configuration.CodeCoverage.Enable = $true
+        $configuration.CodeCoverage.Enabled = $true
         $configuration.CodeCoverage.OutputPath = "$BuildRoot\TestResult.xml"
 
         $result = Invoke-Pester -Configuration $configuration
