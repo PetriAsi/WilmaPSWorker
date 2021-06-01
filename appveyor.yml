@@ -39,7 +39,7 @@ pull_requests:
 
 install:
     - pwsh: |
-#       Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
+#       Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force  | Out-Null
         Install-Module InvokeBuild -Scope CurrentUser -Force
         Install-Module BuildHelpers -Scope CurrentUser -Force
         Install-Module platyPS -Scope CurrentUser -Force
