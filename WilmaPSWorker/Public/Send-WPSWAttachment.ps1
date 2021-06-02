@@ -1,13 +1,19 @@
 <#
 .SYNOPSIS
 Uploads attachment to wilma
+
+.EXAMPLE
+Send-WPSWAttachment -Database students -card_id 12345 -form_id 7
+
+Send attachment to to student with id 12345. -form_id 7 is number of form.
+
 #>
 function Send-WPSWAttachment (){
     [CmdletBinding()]
     param(
       # Database
       [Parameter(Mandatory=$true)]
-      [validateSet('explearning','skilldemo','explearningplaces')]
+      [validateSet('students','explearning','skilldemo','explearningplaces')]
       [string]
       $Database,
 
@@ -36,6 +42,7 @@ function Send-WPSWAttachment (){
         explearning = 'suortopit'
         explearningplaces = 'tyossaopp'
         skilldemo = 'suornaytot'
+        students = 'opphenk'
       }
 
       $referer = "$($WPSWSession.config.url)$($basepath)?tid=$card_id&tdb=$($database_ids[$Database])&formid=$form_id"

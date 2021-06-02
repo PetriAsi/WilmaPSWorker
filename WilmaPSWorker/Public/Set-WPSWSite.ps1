@@ -3,6 +3,15 @@
 Set site settings
 .Description
 Changes site defination, urls , hostnames or credentials used to connect Wilma or Primus
+
+.EXAMPLE
+Set-WPSWSite -site MyWilma -wilma_cred (get-Credential -message "Wilma credentials")
+
+Changes wilma credentials
+.EXAMPLE
+Set-WPSWSite -site MyWilma -pq_host primus.server.fi -pq_port 1222 -pq_cred (get-credential -Message "Primus credentials") -pq_exe "c:\Primusquery\primusquery.exe"
+
+Adds or updates primusquery setting on specific site
 #>function Set-WPSWSite(){
     [CmdletBinding(SupportsShouldProcess)]
     param(

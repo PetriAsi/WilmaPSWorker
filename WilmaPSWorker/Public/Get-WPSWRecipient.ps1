@@ -1,6 +1,11 @@
 <#
 .SYNOPSIS
 Seach or get possible recipients
+
+.EXAMPLE
+Get-WPSWRecipient -Search "Some user" | ConvertFrom-Json
+
+Returns search results grouped by usertype
 #>
 function Get-WPSWRecipient (){
     [CmdletBinding()]

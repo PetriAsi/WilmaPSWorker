@@ -1,6 +1,10 @@
 <#
 .SYNOPSIS
 Get student photo from Wilma
+
+.EXAMPLE
+Get-WPSWStudentPhoto -student_id 1234 -OutFile c:\temp\someuser.jpg
+
 #>
 function Get-WPSWStudentPhoto (){
     [CmdletBinding()]
