@@ -129,7 +129,7 @@ function Send-WPSWMessage (){
       try {
         $requesturl = "$($WPSWSession.config.url)$basepath"
         Write-Verbose $requesturl
-        $result = Invoke-WebRequest -Headers $Headers -SkipHttpErrorCheck -Method Post  -MaximumRedirection 0 -ResponseHeadersVariable ResponseHeader -Form $Body  -Uri $requesturl  -WebSession $WPSWSession.WilmaSession
+        $result = Invoke-RestMethod -Headers $Headers -SkipHttpErrorCheck -Method Post  -MaximumRedirection 0 -ResponseHeadersVariable ResponseHeader -Form $Body  -Uri $requesturl  -WebSession $WPSWSession.WilmaSession
 
         #'/messages/compose' unsuccefull sending
         if($ResponseHeader.Location -eq "$($WPSWSession.config.url)/messages" -or
