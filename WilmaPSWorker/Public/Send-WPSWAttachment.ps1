@@ -5,7 +5,8 @@ Uploads attachment to wilma
 .EXAMPLE
 Send-WPSWAttachment -Database students -card_id 12345 -form_id 7
 
-Send attachment to to student with id 12345 -form_id 7 is number of p
+Send attachment to to student with id 12345. -form_id 7 is number of form.
+
 #>
 function Send-WPSWAttachment (){
     [CmdletBinding()]

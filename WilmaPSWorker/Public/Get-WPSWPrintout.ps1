@@ -3,6 +3,11 @@
 Get pdf printout from wilma.
 .Description
 Downloads genarated pdf:s from Wilma.
+
+.EXAMPLE
+Get-WPSWPrintout -Database explearning -card_id 23656  -print_id 86 -OutFile c:\temp\test.pdf
+
+Gets prinout pdf for explearning id 23656 using printsettings 86
 #>
 function Get-WPSWPrintout (){
     [CmdletBinding()]

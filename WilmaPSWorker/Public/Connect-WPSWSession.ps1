@@ -5,6 +5,15 @@ Connects to wilma site and  selects primusquery credentials
 .DESCRIPTION
 Connect to wilma site, establish websession and selects primusquery credentials to use.
 
+.EXAMPLE
+Connect-WPSWSession
+
+Connects to default site
+
+.EXAMPLE
+Connect-WPSWSession -site "testsite"
+
+Connects to named site
 #>
 function Connect-WPSWSession (){
     [CmdletBinding()]

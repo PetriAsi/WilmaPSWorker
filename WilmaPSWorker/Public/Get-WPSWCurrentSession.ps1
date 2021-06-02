@@ -1,12 +1,16 @@
 <#
 .SYNOPSIS
 Get current WPSWSession settings
+
+.EXAMPLE
+Get-WPSWCurrentSession
+
 #>
 function Get-WPSWCurrentSession (){
     [CmdletBinding()]
     param()
     try {
-      Write-Verbose "GEt-WPSWCurrentSession"
+      Write-Verbose "Get-WPSWCurrentSession"
       $WPSWSession = $PsCmdlet.SessionState.PSVariable.Get("_WPSWSession")
       $WPSWSession.Value
     }
