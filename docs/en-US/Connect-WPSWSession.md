@@ -21,12 +21,19 @@ Connect to wilma site, establish websession and selects primusquery credentials 
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Connect-WPSWSession
 ```
 
-{{ Add example description here }}
+Connects to default site
+
+### EXAMPLE 2
+```
+Connect-WPSWSession -site "testsite"
+```
+
+Connects to named site
 
 ## PARAMETERS
 

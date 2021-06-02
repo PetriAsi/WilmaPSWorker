@@ -65,6 +65,51 @@ Imports data to primus
 
 ## PARAMETERS
 
+### -QueryName
+Queryname on primus
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Outfile
+Write output to file
+
+```yaml
+Type: String
+Parameter Sets: Basic query
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ParseResults
+Parse results and return as parsed psobjects
+
+```yaml
+Type: String
+Parameter Sets: Format results
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Delimiter
 CSV delimiter
 
@@ -95,36 +140,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Infile
-File to import to primus
-
-```yaml
-Type: String
-Parameter Sets: Import data
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Outfile
-Write output to file
-
-```yaml
-Type: String
-Parameter Sets: Basic query
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Parameters
 Parameters for primusquery, supports also arrays.
 In primusquery you can use %p1% , %p2% ...
@@ -142,31 +157,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ParseResults
-Parse results and return as parsed psobjects
+### -Infile
+File to import to primus
 
 ```yaml
 Type: String
-Parameter Sets: Format results
+Parameter Sets: Import data
 Aliases:
 
 Required: True
 Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -QueryName
-Queryname on primus
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

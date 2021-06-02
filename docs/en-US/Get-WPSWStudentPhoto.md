@@ -21,29 +21,12 @@ Get-WPSWStudentPhoto [-student_id] <Int32> [-OutFile] <String> [<CommonParameter
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
 ```
-
-{{ Add example description here }}
+Get-WPSWStudentPhoto -student_id 1234 -OutFile c:\temp\someuser.jpg
+```
 
 ## PARAMETERS
-
-### -OutFile
-Output file
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -student_id
 Student ID
@@ -56,6 +39,21 @@ Aliases:
 Required: True
 Position: 1
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OutFile
+Output file
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

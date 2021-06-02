@@ -22,29 +22,15 @@ Send-WPSWAttachment [-Database] <String> [-card_id] <Int32> [-form_id] <Int32> [
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Send-WPSWAttachment -Database students -card_id 12345 -form_id 7
 ```
 
-{{ Add example description here }}
+Send attachment to to student with id 12345.
+-form_id 7 is number of form.
 
 ## PARAMETERS
-
-### -card_id
-card ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 2
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Database
 Database
@@ -57,6 +43,21 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -card_id
+card ID
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
