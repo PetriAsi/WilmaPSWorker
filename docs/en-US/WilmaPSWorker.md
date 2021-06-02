@@ -12,41 +12,41 @@ Locale: en-US
 
 ## WilmaPSWorker Cmdlets
 ### [Connect-WPSWSession](Connect-WPSWSession.md)
-{{ Fill in the Description }}
+Connects to wilma site and  selects primusquery credentials
 
 ### [Get-WPSWCurrentSession](Get-WPSWCurrentSession.md)
-{{ Fill in the Description }}
+Get current WPSWSession settings
 
 ### [Get-WPSWGroup](Get-WPSWGroup.md)
-{{ Fill in the Description }}
+Get groups
 
 ### [Get-WPSWMessage](Get-WPSWMessage.md)
-{{ Fill in the Description }}
+Get Wilma messages
 
 ### [Get-WPSWPrintout](Get-WPSWPrintout.md)
-{{ Fill in the Description }}
+Get pdf printout from wilma.
 
 ### [Get-WPSWRecipient](Get-WPSWRecipient.md)
-{{ Fill in the Description }}
+Seach or get possible recipients
 
 ### [Get-WPSWSite](Get-WPSWSite.md)
-{{ Fill in the Description }}
+Gets all Wilma site settings or specific site settings
 
 ### [Get-WPSWStudentPhoto](Get-WPSWStudentPhoto.md)
-{{ Fill in the Description }}
+Get student photo from Wilma
 
 ### [Invoke-WPSWPrimusQuery](Invoke-WPSWPrimusQuery.md)
-{{ Fill in the Description }}
+Invokes primusquery, exports and imports data from Primus.
 
 ### [New-WPSWSite](New-WPSWSite.md)
-{{ Fill in the Description }}
+Creates new Wilma site , sets addresses and needed credentials.
 
 ### [Send-WPSWAttachment](Send-WPSWAttachment.md)
-{{ Fill in the Description }}
+Uploads attachment to wilma
 
 ### [Send-WPSWMessage](Send-WPSWMessage.md)
-{{ Fill in the Description }}
+Send wilma message to recipients
 
 ### [Set-WPSWSite](Set-WPSWSite.md)
-{{ Fill in the Description }}
+Set site settings
 

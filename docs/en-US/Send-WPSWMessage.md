@@ -46,66 +46,6 @@ Replies to message with id 12345
 
 ## PARAMETERS
 
-### -MessageBody
-Message Body
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Subject
-Message subject
-
-```yaml
-Type: String
-Parameter Sets: NewMessage
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Reply_id
-Message is reply to message id
-
-```yaml
-Type: Int32
-Parameter Sets: ReplyMessage
-Aliases:
-
-Required: True
-Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ShowRecipients
-whether the recipient is able to see the names of the other recipients
-
-```yaml
-Type: Boolean
-Parameter Sets: NewMessage
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -CollatedReplies
 whether the recipients are able to see each other's responses (can answer by Quick Reply)
 
@@ -121,77 +61,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -r_student
-Recipient Student ID
-
-```yaml
-Type: Int32[]
-Parameter Sets: NewMessage
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -r_guardian
-Recipient guardian for student ID If the student has two guardians (personal accounts in use) and you
-only want to choose one of the guardians as a recipient, create the value
-Id+_+ PasswdID
+### -MessageBody
+Message Body
 
 ```yaml
 Type: String
-Parameter Sets: NewMessage
+Parameter Sets: (All)
 Aliases:
 
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -r_teacher
-Recipient teacher ID
-
-```yaml
-Type: Int32[]
-Parameter Sets: NewMessage
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -r_personnel
-Recipient personel ID
-
-```yaml
-Type: Int32[]
-Parameter Sets: NewMessage
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -r_instructor
-Recipient workplace instructor ID
-
-```yaml
-Type: Int32[]
-Parameter Sets: NewMessage
-Aliases:
-
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -252,6 +130,128 @@ Parameter Sets: NewMessage
 Aliases:
 
 Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -r_guardian
+Recipient guardian for student ID If the student has two guardians (personal accounts in use) and you
+only want to choose one of the guardians as a recipient, create the value
+Id+_+ PasswdID
+
+```yaml
+Type: String
+Parameter Sets: NewMessage
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -r_instructor
+Recipient workplace instructor ID
+
+```yaml
+Type: Int32[]
+Parameter Sets: NewMessage
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -r_personnel
+Recipient personel ID
+
+```yaml
+Type: Int32[]
+Parameter Sets: NewMessage
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -r_student
+Recipient Student ID
+
+```yaml
+Type: Int32[]
+Parameter Sets: NewMessage
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -r_teacher
+Recipient teacher ID
+
+```yaml
+Type: Int32[]
+Parameter Sets: NewMessage
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Reply_id
+Message is reply to message id
+
+```yaml
+Type: Int32
+Parameter Sets: ReplyMessage
+Aliases:
+
+Required: True
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ShowRecipients
+whether the recipient is able to see the names of the other recipients
+
+```yaml
+Type: Boolean
+Parameter Sets: NewMessage
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Subject
+Message subject
+
+```yaml
+Type: String
+Parameter Sets: NewMessage
+Aliases:
+
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False

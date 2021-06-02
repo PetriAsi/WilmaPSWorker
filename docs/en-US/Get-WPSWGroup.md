@@ -21,12 +21,12 @@ Get-WPSWGroup [<CommonParameters>]
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Get-WPSWGroup
 ```
 
-{{ Add example description here }}
+Lists assosiated groups for surrent connection
 
 ## PARAMETERS
 

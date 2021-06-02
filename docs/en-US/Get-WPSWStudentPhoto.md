@@ -28,21 +28,6 @@ Get-WPSWStudentPhoto -student_id 1234 -OutFile c:\temp\someuser.jpg
 
 ## PARAMETERS
 
-### -student_id
-Student ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -OutFile
 Output file
 
@@ -54,6 +39,21 @@ Aliases:
 Required: True
 Position: 2
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -student_id
+Student ID
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
