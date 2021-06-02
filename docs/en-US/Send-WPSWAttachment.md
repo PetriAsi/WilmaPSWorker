@@ -32,21 +32,6 @@ Send attachment to to student with id 12345.
 
 ## PARAMETERS
 
-### -Database
-Database
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -card_id
 card ID
 
@@ -58,6 +43,21 @@ Aliases:
 Required: True
 Position: 2
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Database
+Database
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -1,6 +1,11 @@
 <#
 .SYNOPSIS
 Get groups
+
+.EXAMPLE
+Get-WPSWGroup
+
+Lists assosiated groups for surrent connection
 #>
 function Get-WPSWGroup (){
     [CmdletBinding()]

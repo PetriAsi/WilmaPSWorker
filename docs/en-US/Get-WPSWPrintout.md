@@ -31,6 +31,21 @@ Gets prinout pdf for explearning id 23656 using printsettings 86
 
 ## PARAMETERS
 
+### -card_id
+card ID
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 3
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Database
 Database
 
@@ -41,6 +56,21 @@ Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OutFile
+Output file
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -58,36 +88,6 @@ Aliases:
 Required: True
 Position: 2
 Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -card_id
-card ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 3
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -OutFile
-Output file
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 4
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
