@@ -201,7 +201,7 @@ task Deploy -If (
     # Meant for major/minor version publishes with a .0 build/patch version (like 2.1.0)
     $env:APPVEYOR_REPO_COMMIT_MESSAGE -notlike '*skip-deploy*'
 ) {
-    Install-Module -Name Configuration -Force
+    Install-Module -Name Configuration -Force -AllowClobber
     Remove-Module WilmaPSWorker -ErrorAction SilentlyContinue
 }, PublishToGallery
 
