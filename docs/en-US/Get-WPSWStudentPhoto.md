@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-WPSWStudentPhoto
 
 ## SYNOPSIS
-Get student photo
+Get student photo from Wilma
 
 ## SYNTAX
 

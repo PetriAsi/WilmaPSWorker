@@ -17,7 +17,7 @@ Get-WPSWMessage [-Folder] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Get all wilma messages or messages from selected folder Inbox , Sent , Archive or Drafts.
 
 ## EXAMPLES
 

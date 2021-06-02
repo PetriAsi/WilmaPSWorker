@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-WPSWSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Set site settings
 
 ## SYNTAX
 
@@ -25,7 +25,7 @@ Set-WPSWSite -site <String> [-pq_host <String>] [-pq_port <String>] [-pq_cred <P
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Changes site defination, urls , hostnames or credentials used to connect Wilma or Primus
 
 ## EXAMPLES
 
@@ -39,7 +39,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -DefaultSite
-{{ Fill DefaultSite Description }}
+set Site as default
 
 ```yaml
 Type: SwitchParameter
@@ -48,13 +48,13 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -pq_cred
-{{ Fill pq_cred Description }}
+Creadential to use with primusquery
 
 ```yaml
 Type: PSCredential
@@ -69,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -pq_exe
-{{ Fill pq_exe Description }}
+Path to primusquery excutable
 
 ```yaml
 Type: String
@@ -84,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -pq_host
-{{ Fill pq_host Description }}
+Primusquery host
 
 ```yaml
 Type: String
@@ -99,7 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -pq_port
-{{ Fill pq_port Description }}
+Primusquery port
 
 ```yaml
 Type: String
@@ -114,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -site
-{{ Fill site Description }}
+Short name for wilma site
 
 ```yaml
 Type: String
@@ -129,7 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -wilma_apikey
-{{ Fill wilma_apikey Description }}
+Wilma api-key
 
 ```yaml
 Type: String
@@ -144,7 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -wilma_cred
-{{ Fill wilma_cred Description }}
+Wilma usercredential
 
 ```yaml
 Type: PSCredential
@@ -159,7 +159,7 @@ Accept wildcard characters: False
 ```
 
 ### -wilma_url
-{{ Fill wilma_url Description }}
+Wilma site url
 
 ```yaml
 Type: String
@@ -209,11 +209,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS

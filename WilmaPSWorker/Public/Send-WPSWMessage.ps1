@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Get pdf printout from generic databases
+Send wilma message to recipients
 #>
 function Send-WPSWMessage (){
     [CmdletBinding()]

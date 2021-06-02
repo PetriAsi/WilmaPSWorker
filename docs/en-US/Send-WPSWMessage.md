@@ -8,7 +8,7 @@ schema: 2.0.0
 # Send-WPSWMessage
 
 ## SYNOPSIS
-Get pdf printout from generic databases
+Send wilma message to recipients
 
 ## SYNTAX
 
@@ -109,7 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -r_groupguardian
-teacher of the group
+teacher ID of the group
 
 ```yaml
 Type: Int32[]

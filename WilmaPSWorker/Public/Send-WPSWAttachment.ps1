@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Uoloads attachment to wilma
+Uploads attachment to wilma
 #>
 function Send-WPSWAttachment (){
     [CmdletBinding()]

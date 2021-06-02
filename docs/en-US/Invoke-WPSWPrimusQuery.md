@@ -8,7 +8,7 @@ schema: 2.0.0
 # Invoke-WPSWPrimusQuery
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Invokes primusquery, exports and imports data from Primus.
 
 ## SYNTAX
 
@@ -29,7 +29,9 @@ Invoke-WPSWPrimusQuery [-QueryName] <String> -Infile <String> [<CommonParameters
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Invokes primusquery, exports and imports data from Primus.
+Exported data can be saved
+to file or processes as XML or CSV formating.
 
 ## EXAMPLES
 
@@ -43,7 +45,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Delimiter
-{{ Fill Delimiter Description }}
+CSV delimiter
 
 ```yaml
 Type: String
@@ -52,13 +54,13 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: ;
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Header
-{{ Fill Header Description }}
+Column names for csv file
 
 ```yaml
 Type: String[]
@@ -73,7 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -Infile
-{{ Fill Infile Description }}
+File to import to primus
 
 ```yaml
 Type: String
@@ -88,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -Outfile
-{{ Fill Outfile Description }}
+Write output to file
 
 ```yaml
 Type: String
@@ -103,7 +105,9 @@ Accept wildcard characters: False
 ```
 
 ### -Parameters
-{{ Fill Parameters Description }}
+Parameters for primusquery, supports also arrays.
+In primusquery you can use %p1% , %p2% ...
+for multiple parameters
 
 ```yaml
 Type: String[]
@@ -118,13 +122,12 @@ Accept wildcard characters: False
 ```
 
 ### -ParseResults
-{{ Fill ParseResults Description }}
+Parse results and return as parsed psobjects
 
 ```yaml
 Type: String
 Parameter Sets: Format
 Aliases:
-Accepted values: xml, csv
 
 Required: True
 Position: Named
@@ -134,7 +137,7 @@ Accept wildcard characters: False
 ```
 
 ### -QueryName
-{{ Fill QueryName Description }}
+Queryname on primus
 
 ```yaml
 Type: String
@@ -142,7 +145,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -153,11 +156,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS

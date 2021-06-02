@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-WPSWGroup
 
 ## SYNOPSIS
-Get messages
+Get groups
 
 ## SYNTAX
 

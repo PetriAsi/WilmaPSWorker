@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-WPSWPrintout
 
 ## SYNOPSIS
-Get pdf printout from generic databases
+Get  pdf printout from wilma.
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Get-WPSWPrintout [-Database] <String> [-card_id] <Int32> [-OutFile] <String> [<C
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Downloads genarated pdf:s from Wilma.
 
 ## EXAMPLES
 

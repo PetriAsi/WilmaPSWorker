@@ -1,7 +1,8 @@
 <#
 .Synopsis
 Tools to interact with Visma Wilma and Primus with primusquery
-
+.Description
+Collection of tools that make working with Wilma little bit easier and more secure.
 #>
 
 # Dot source public/private functions
