@@ -21,7 +21,7 @@ Get current WPSWSession settings
 Get groups
 
 ### [Get-WPSWMessage](Get-WPSWMessage.md)
-Get messages
+Get Wilma messages
 
 ### [Get-WPSWPrintout](Get-WPSWPrintout.md)
 Get  pdf printout from wilma.

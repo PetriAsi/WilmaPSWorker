@@ -8,25 +8,38 @@ schema: 2.0.0
 # Get-WPSWMessage
 
 ## SYNOPSIS
-Get messages
+Get Wilma messages
 
 ## SYNTAX
 
+### Message content
 ```
-Get-WPSWMessage [-Folder] <String> [<CommonParameters>]
+Get-WPSWMessage -Message_id <Int32> [<CommonParameters>]
+```
+
+### List messages
+```
+Get-WPSWMessage -Folder <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get all wilma messages or messages from selected folder Inbox , Sent , Archive or Drafts.
+Get all wilma messages, messages from selected folder Inbox , Sent , Archive or Drafts.
+Or message content for specific message
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Get-WPSWMessage -Folder Inbox
+Gets messagelist from Inbox folder
 ```
 
-{{ Add example description here }}
+### EXAMPLE 2
+```
+Get-WPSWMessage -Message_id 12345
+```
+
+Gets message content for message id 12345
 
 ## PARAMETERS
 
@@ -35,12 +48,27 @@ Mailfolder
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: List messages
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Message_id
+Message id
+
+```yaml
+Type: Int32
+Parameter Sets: Message content
+Aliases:
+
+Required: True
+Position: Named
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

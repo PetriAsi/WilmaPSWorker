@@ -12,18 +12,18 @@ Invokes primusquery, exports and imports data from Primus.
 
 ## SYNTAX
 
-### Query
+### Basic query
 ```
 Invoke-WPSWPrimusQuery [-QueryName] <String> [-Outfile <String>] [-Parameters <String[]>] [<CommonParameters>]
 ```
 
-### Format
+### Format results
 ```
 Invoke-WPSWPrimusQuery [-QueryName] <String> -ParseResults <String> [-Delimiter <String>] [-Header <String[]>]
  [-Parameters <String[]>] [<CommonParameters>]
 ```
 
-### Import
+### Import data
 ```
 Invoke-WPSWPrimusQuery [-QueryName] <String> -Infile <String> [<CommonParameters>]
 ```
@@ -35,12 +35,33 @@ to file or processes as XML or CSV formating.
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Invoke-WPSWPrimusQuery -QueryName students -Outfile students.txt
 ```
 
-{{ Add example description here }}
+Saves primusquery output to student.txt
+
+### EXAMPLE 2
+```
+Invoke-WPSWPrimusQuery -QueryName classes -ParseResults csv -Delimiter '|'
+```
+
+Invokes query, parses results as csv and returns result lines as powershell objects
+
+### EXAMPLE 3
+```
+Invoke-WPSWPrimusQuery -QueryName applicants -ParseResults xml -Parameters "3.4.2021"
+```
+
+Invokes query with parameters to get applicants, parses results as xml and returns result as xml object
+
+### EXAMPLE 4
+```
+Invoke-WPSWPrimusQuery -QueryName Grades -Infile new-grades
+```
+
+Imports data to primus
 
 ## PARAMETERS
 
@@ -49,7 +70,7 @@ CSV delimiter
 
 ```yaml
 Type: String
-Parameter Sets: Format
+Parameter Sets: Format results
 Aliases:
 
 Required: False
@@ -64,7 +85,7 @@ Column names for csv file
 
 ```yaml
 Type: String[]
-Parameter Sets: Format
+Parameter Sets: Format results
 Aliases:
 
 Required: False
@@ -79,7 +100,7 @@ File to import to primus
 
 ```yaml
 Type: String
-Parameter Sets: Import
+Parameter Sets: Import data
 Aliases:
 
 Required: True
@@ -94,7 +115,7 @@ Write output to file
 
 ```yaml
 Type: String
-Parameter Sets: Query
+Parameter Sets: Basic query
 Aliases:
 
 Required: False
@@ -111,7 +132,7 @@ for multiple parameters
 
 ```yaml
 Type: String[]
-Parameter Sets: Query, Format
+Parameter Sets: Basic query, Format results
 Aliases:
 
 Required: False
@@ -126,7 +147,7 @@ Parse results and return as parsed psobjects
 
 ```yaml
 Type: String
-Parameter Sets: Format
+Parameter Sets: Format results
 Aliases:
 
 Required: True

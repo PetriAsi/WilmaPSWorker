@@ -10,7 +10,7 @@ older one so dont be shy and just [install it](https://docs.microsoft.com/en-us/
 ### Features
 
 #### Wilma features
- - Send and receive wilma messages
+ - Receive, send and reply wilma messages
  - Search and list messages recipients
  - Download profile pictures
  - Upload attachments
@@ -33,11 +33,12 @@ Install-Module WilmaPSWorker
 
 ### Setup new site
 
+Following setups new site with wilma and primusquery access
 ```powershell
-New-WPSWSite -site MyWilma -wilma_url https://mysite.inschool.fi -wilma_apikey xxxxxxxxxxxxxx -wilma_cred (get-Credential -message "Wilma credentials") -pq_host primus.server.fi -pq_port 1222 -pq_cred (get-credential -Message "Primus credentials")
+New-WPSWSite -site MyWilma -wilma_url https://mysite.inschool.fi -wilma_apikey xxxxxxxxxxxxxx -wilma_cred (get-Credential -message "Wilma credentials") -pq_host primus.server.fi -pq_port 1222 -pq_cred (get-credential -Message "Primus credentials") -pq_exe "c:\Primusquery\primusquery.exe"
 ```
 
-After you have setup the site, use just connect-wpswsite in scripts.
+After you have setup the site, use just connect-wpswsite inside your scripts.
 
 ### Connect site
 

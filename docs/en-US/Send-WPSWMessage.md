@@ -12,11 +12,17 @@ Send wilma message to recipients
 
 ## SYNTAX
 
+### ReplyMessage
 ```
-Send-WPSWMessage [-MessageBody] <String> [-Subject] <String> [[-ShowRecipients] <Boolean>]
- [[-CollatedReplies] <Boolean>] [[-r_student] <Int32[]>] [[-r_guardian] <String>] [[-r_teacher] <Int32[]>]
- [[-r_personnel] <Int32[]>] [[-r_instructor] <Int32[]>] [[-r_class] <Int32[]>] [[-r_classguardian] <Int32[]>]
- [[-r_group] <Int32[]>] [[-r_groupguardian] <Int32[]>] [<CommonParameters>]
+Send-WPSWMessage -MessageBody <String> -Reply_id <Int32> [<CommonParameters>]
+```
+
+### NewMessage
+```
+Send-WPSWMessage -MessageBody <String> -Subject <String> [-ShowRecipients <Boolean>]
+ [-CollatedReplies <Boolean>] [-r_student <Int32[]>] [-r_guardian <String>] [-r_teacher <Int32[]>]
+ [-r_personnel <Int32[]>] [-r_instructor <Int32[]>] [-r_class <Int32[]>] [-r_classguardian <Int32[]>]
+ [-r_group <Int32[]>] [-r_groupguardian <Int32[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,12 +30,19 @@ Send-WPSWMessage [-MessageBody] <String> [-Subject] <String> [[-ShowRecipients] 
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Send-WPSWMessage -MessageBody "just testing" -Subject "test"" -r_student 123
 ```
 
-{{ Add example description here }}
+Sends a message to student with id 123
+
+### EXAMPLE 2
+```
+Send-WPSWMessage -MessageBody "This is ok" -Reply_id 12345
+```
+
+Replies to message with id 12345
 
 ## PARAMETERS
 
@@ -38,11 +51,11 @@ whether the recipients are able to see each other's responses (can answer by Qui
 
 ```yaml
 Type: Boolean
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 4
+Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -57,7 +70,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -68,11 +81,11 @@ Recipient Class ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 10
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -83,11 +96,11 @@ Recipient class supervisor ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 11
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -98,11 +111,11 @@ Recipient Group ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 12
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -113,11 +126,11 @@ teacher ID of the group
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 13
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -130,11 +143,11 @@ Id+_+ PasswdID
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 6
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -145,11 +158,11 @@ Recipient workplace instructor ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 9
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -160,11 +173,11 @@ Recipient personel ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 8
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -175,11 +188,11 @@ Recipient Student ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 5
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -190,12 +203,27 @@ Recipient teacher ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 7
+Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Reply_id
+Message is reply to message id
+
+```yaml
+Type: Int32
+Parameter Sets: ReplyMessage
+Aliases:
+
+Required: True
+Position: Named
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -205,11 +233,11 @@ whether the recipient is able to see the names of the other recipients
 
 ```yaml
 Type: Boolean
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: False
-Position: 3
+Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -220,11 +248,11 @@ Message subject
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: NewMessage
 Aliases:
 
 Required: True
-Position: 2
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

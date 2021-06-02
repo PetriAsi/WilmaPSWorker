@@ -35,7 +35,7 @@ function New-WPSWSite(){
          [string]
          $pq_port,
 
-         # Creadential to use with primusqueryetName = "PQ")]
+         # Credential to use with primusquery]
 
          [PSCredential]
          $pq_cred,
