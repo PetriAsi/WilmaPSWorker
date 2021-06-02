@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-WPSWRecipient
 
 ## SYNOPSIS
-Get possible recipients
+Seach or get possible recipients
 
 ## SYNTAX
 
@@ -52,7 +52,8 @@ Accept wildcard characters: False
 ```
 
 ### -RecipientTypeID
-Recipient type id
+Recipient type ID.
+This is id number of class
 
 ```yaml
 Type: Int32

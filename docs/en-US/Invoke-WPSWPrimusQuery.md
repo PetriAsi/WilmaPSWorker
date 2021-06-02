@@ -8,61 +8,84 @@ schema: 2.0.0
 # Invoke-WPSWPrimusQuery
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Invokes primusquery, exports and imports data from Primus.
 
 ## SYNTAX
 
-### Query
+### Basic query
 ```
 Invoke-WPSWPrimusQuery [-QueryName] <String> [-Outfile <String>] [-Parameters <String[]>] [<CommonParameters>]
 ```
 
-### Format
+### Format results
 ```
 Invoke-WPSWPrimusQuery [-QueryName] <String> -ParseResults <String> [-Delimiter <String>] [-Header <String[]>]
  [-Parameters <String[]>] [<CommonParameters>]
 ```
 
-### Import
+### Import data
 ```
 Invoke-WPSWPrimusQuery [-QueryName] <String> -Infile <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Invokes primusquery, exports and imports data from Primus.
+Exported data can be saved
+to file or processes as XML or CSV formating.
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Invoke-WPSWPrimusQuery -QueryName students -Outfile students.txt
 ```
 
-{{ Add example description here }}
+Saves primusquery output to student.txt
+
+### EXAMPLE 2
+```
+Invoke-WPSWPrimusQuery -QueryName classes -ParseResults csv -Delimiter '|'
+```
+
+Invokes query, parses results as csv and returns result lines as powershell objects
+
+### EXAMPLE 3
+```
+Invoke-WPSWPrimusQuery -QueryName applicants -ParseResults xml -Parameters "3.4.2021"
+```
+
+Invokes query with parameters to get applicants, parses results as xml and returns result as xml object
+
+### EXAMPLE 4
+```
+Invoke-WPSWPrimusQuery -QueryName Grades -Infile new-grades
+```
+
+Imports data to primus
 
 ## PARAMETERS
 
 ### -Delimiter
-{{ Fill Delimiter Description }}
+CSV delimiter
 
 ```yaml
 Type: String
-Parameter Sets: Format
+Parameter Sets: Format results
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: ;
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Header
-{{ Fill Header Description }}
+Column names for csv file
 
 ```yaml
 Type: String[]
-Parameter Sets: Format
+Parameter Sets: Format results
 Aliases:
 
 Required: False
@@ -73,11 +96,11 @@ Accept wildcard characters: False
 ```
 
 ### -Infile
-{{ Fill Infile Description }}
+File to import to primus
 
 ```yaml
 Type: String
-Parameter Sets: Import
+Parameter Sets: Import data
 Aliases:
 
 Required: True
@@ -88,11 +111,11 @@ Accept wildcard characters: False
 ```
 
 ### -Outfile
-{{ Fill Outfile Description }}
+Write output to file
 
 ```yaml
 Type: String
-Parameter Sets: Query
+Parameter Sets: Basic query
 Aliases:
 
 Required: False
@@ -103,11 +126,13 @@ Accept wildcard characters: False
 ```
 
 ### -Parameters
-{{ Fill Parameters Description }}
+Parameters for primusquery, supports also arrays.
+In primusquery you can use %p1% , %p2% ...
+for multiple parameters
 
 ```yaml
 Type: String[]
-Parameter Sets: Query, Format
+Parameter Sets: Basic query, Format results
 Aliases:
 
 Required: False
@@ -118,13 +143,12 @@ Accept wildcard characters: False
 ```
 
 ### -ParseResults
-{{ Fill ParseResults Description }}
+Parse results and return as parsed psobjects
 
 ```yaml
 Type: String
-Parameter Sets: Format
+Parameter Sets: Format results
 Aliases:
-Accepted values: xml, csv
 
 Required: True
 Position: Named
@@ -134,7 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -QueryName
-{{ Fill QueryName Description }}
+Queryname on primus
 
 ```yaml
 Type: String
@@ -142,7 +166,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -153,11 +177,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS

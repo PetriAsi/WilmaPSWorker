@@ -1,6 +1,6 @@
 <#
 .Synopsis
-Creates new Wilma site , addresses and needed credentials.
+Creates new Wilma site , sets addresses and needed credentials.
 .Description
 Setup new site to connect Wilma via http and/or Primus with primusquery.
 #>
@@ -35,7 +35,7 @@ function New-WPSWSite(){
          [string]
          $pq_port,
 
-         # Creadential to use with primusqueryetName = "PQ")]
+         # Credential to use with primusquery]
 
          [PSCredential]
          $pq_cred,

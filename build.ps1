@@ -91,6 +91,7 @@ foreach($task in $Tasks){
             Run-Tests
         }
         "release" {
+            Install-Dependency -Name "Configuration"
             Write-Output "Releasing..."
             Release
         }

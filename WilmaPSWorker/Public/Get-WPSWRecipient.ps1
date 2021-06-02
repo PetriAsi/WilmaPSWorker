@@ -16,7 +16,7 @@ function Get-WPSWRecipient (){
       [string]
       $RecipientType,
 
-      #Recipient type id
+      #Recipient type ID. This is id number of class
       [Parameter(Mandatory=$false,ParameterSetName="Query")]
       [int]
       $RecipientTypeID
@@ -26,7 +26,7 @@ function Get-WPSWRecipient (){
       $WPSWSession = Get-WPSWCurrentSession
 
       if($RecipientType -ne 'All' -and (-not $RecipientTypeID) -and (-not $Search)){
-        Write-Error "Please specify RecipientTypeID for"
+        Throw "Please specify RecipientTypeID for $RecipientType"
       }
 
       $urimap =@{
@@ -35,7 +35,7 @@ function Get-WPSWRecipient (){
       }
 
       if ( $RecipientType) {
-        $basepath = $($urimap[$RecipientTypeID])
+        $basepath = $urimap[$RecipientType]
       } else {
         if($Search){
           $basepath = "/messages/recipients/search?name=$Search&format=json"

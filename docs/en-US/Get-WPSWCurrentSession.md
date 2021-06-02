@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-WPSWCurrentSession
 
 ## SYNOPSIS
-Get current WPSWSession
+Get current WPSWSession settings
 
 ## SYNTAX
 

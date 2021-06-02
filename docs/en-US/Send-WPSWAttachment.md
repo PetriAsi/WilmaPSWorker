@@ -8,7 +8,7 @@ schema: 2.0.0
 # Send-WPSWAttachment
 
 ## SYNOPSIS
-Get pdf printout from generic databases
+Uploads attachment to wilma
 
 ## SYNTAX
 

@@ -1,9 +1,31 @@
 <#
 .Synopsis
 Invokes primusquery, exports and imports data from Primus.
+
 .Description
 Invokes primusquery, exports and imports data from Primus. Exported data can be saved
 to file or processes as XML or CSV formating.
+
+.EXAMPLE
+Invoke-WPSWPrimusQuery -QueryName students -Outfile students.txt
+
+Saves primusquery output to student.txt
+
+.EXAMPLE
+Invoke-WPSWPrimusQuery -QueryName classes -ParseResults csv -Delimiter '|'
+
+Invokes query, parses results as csv and returns result lines as powershell objects
+
+.EXAMPLE
+Invoke-WPSWPrimusQuery -QueryName applicants -ParseResults xml -Parameters "3.4.2021"
+
+Invokes query with parameters to get applicants, parses results as xml and returns result as xml object
+
+.EXAMPLE
+Invoke-WPSWPrimusQuery -QueryName Grades -Infile new-grades
+
+Imports data to primus
+
 #>
 function Invoke-WPSWPrimusQuery  {
     param (
@@ -13,32 +35,32 @@ function Invoke-WPSWPrimusQuery  {
     $QueryName,
 
     #Write output to file
-    [Parameter(Mandatory=$false,ParameterSetName="Query")]
+    [Parameter(Mandatory=$false,ParameterSetName="Basic query")]
     [string]$Outfile,
 
     #Parse results and return as parsed psobjects
-    [Parameter(Mandatory=$true,ParameterSetName="Format")]
+    [Parameter(Mandatory=$true,ParameterSetName="Format results")]
     [ValidateSet('xml','csv')]
     [string]$ParseResults,
 
     #CSV delimiter
-    [Parameter(Mandatory=$false,ParameterSetName="Format")]
+    [Parameter(Mandatory=$false,ParameterSetName="Format results")]
     [string]$Delimiter=';',
 
     #Column names for csv file
-    [Parameter(Mandatory=$false,ParameterSetName="Format")]
+    [Parameter(Mandatory=$false,ParameterSetName="Format results")]
     [string[]]$Header,
 
     #Parameters for primusquery, supports also arrays.
     #In primusquery you can use %p1% , %p2% ... for multiple parameters
-    [Parameter(Mandatory=$false,ParameterSetName="Query")]
-    [Parameter(Mandatory=$false,ParameterSetName="Format")]
+    [Parameter(Mandatory=$false,ParameterSetName="Basic query")]
+    [Parameter(Mandatory=$false,ParameterSetName="Format results")]
     [string[]]$Parameters,
 
 
 
     #File to import to primus
-    [Parameter(Mandatory=$true,ParameterSetName="Import")]
+    [Parameter(Mandatory=$true,ParameterSetName="Import data")]
     [string]$Infile
 
     )

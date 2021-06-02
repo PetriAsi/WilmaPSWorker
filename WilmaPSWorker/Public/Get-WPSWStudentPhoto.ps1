@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Get student photofrom Wilma
+Get student photo from Wilma
 #>
 function Get-WPSWStudentPhoto (){
     [CmdletBinding()]

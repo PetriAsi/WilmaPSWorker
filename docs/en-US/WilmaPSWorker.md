@@ -15,38 +15,38 @@ Locale: en-US
 Connects to wilma site and  selects primusquery credentials
 
 ### [Get-WPSWCurrentSession](Get-WPSWCurrentSession.md)
-Get current WPSWSession
+Get current WPSWSession settings
 
 ### [Get-WPSWGroup](Get-WPSWGroup.md)
-Get messages
+Get groups
 
 ### [Get-WPSWMessage](Get-WPSWMessage.md)
-Get messages
+Get Wilma messages
 
 ### [Get-WPSWPrintout](Get-WPSWPrintout.md)
-Get pdf printout from generic databases
+Get  pdf printout from wilma.
 
 ### [Get-WPSWRecipient](Get-WPSWRecipient.md)
-Get possible recipients
+Seach or get possible recipients
 
 ### [Get-WPSWSite](Get-WPSWSite.md)
-{{ Fill in the Synopsis }}
+Gets all Wilma site settings or specific site settings
 
 ### [Get-WPSWStudentPhoto](Get-WPSWStudentPhoto.md)
-Get student photo
+Get student photo from Wilma
 
 ### [Invoke-WPSWPrimusQuery](Invoke-WPSWPrimusQuery.md)
-{{ Fill in the Synopsis }}
+Invokes primusquery, exports and imports data from Primus.
 
 ### [New-WPSWSite](New-WPSWSite.md)
-{{ Fill in the Synopsis }}
+Creates new Wilma site , sets addresses and needed credentials.
 
 ### [Send-WPSWAttachment](Send-WPSWAttachment.md)
-Get pdf printout from generic databases
+Uploads attachment to wilma
 
 ### [Send-WPSWMessage](Send-WPSWMessage.md)
-Get pdf printout from generic databases
+Send wilma message to recipients
 
 ### [Set-WPSWSite](Set-WPSWSite.md)
-{{ Fill in the Synopsis }}
+Set site settings
 

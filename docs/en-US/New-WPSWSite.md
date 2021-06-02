@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-WPSWSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates new Wilma site , sets addresses and needed credentials.
 
 ## SYNTAX
 
@@ -19,7 +19,7 @@ New-WPSWSite [-site] <String> [-wilma_url] <String> [-wilma_apikey] <String> [-w
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Setup new site to connect Wilma via http and/or Primus with primusquery.
 
 ## EXAMPLES
 
@@ -33,25 +33,10 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -pq_cred
-{{ Fill pq_cred Description }}
+Creadential to use with primusqueryetName = "PQ")\]
 
 ```yaml
 Type: PSCredential
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 6
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -pq_exe
-{{ Fill pq_exe Description }}
-
-```yaml
-Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,8 +47,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -pq_host
-{{ Fill pq_host Description }}
+### -pq_exe
+Path to primusquery excutable
 
 ```yaml
 Type: String
@@ -71,14 +56,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 4
+Position: 8
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -pq_port
-{{ Fill pq_port Description }}
+### -pq_host
+Primusquery host
 
 ```yaml
 Type: String
@@ -92,8 +77,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -pq_port
+Primusquery port
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -site
-{{ Fill site Description }}
+Short name for wilma site
 
 ```yaml
 Type: String
@@ -101,32 +101,17 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -wilma_apikey
-{{ Fill wilma_apikey Description }}
+Wilma api-key
 
 ```yaml
 Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -wilma_cred
-{{ Fill wilma_cred Description }}
-
-```yaml
-Type: PSCredential
 Parameter Sets: (All)
 Aliases:
 
@@ -137,8 +122,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -wilma_cred
+Wilma usercredential
+
+```yaml
+Type: PSCredential
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -wilma_url
-{{ Fill wilma_url Description }}
+Wilma site url
 
 ```yaml
 Type: String
@@ -146,7 +146,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -188,11 +188,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS
