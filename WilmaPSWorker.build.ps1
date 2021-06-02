@@ -207,7 +207,7 @@ task Deploy -If (
 
 task PublishToGallery {
     assert ($env:PSGalleryAPIKey) "No key for the PSGallery"
-    import-Module -Name Configuration
+    import-Module -Name Configuration -AllowClobber
     Import-Module $releasePath\WilmaPSWorker\WilmaPSWorker.psd1 -ErrorAction Stop
     Publish-Module -Name WilmaPSWorker -NuGetApiKey $env:PSGalleryAPIKey
 }
