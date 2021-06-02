@@ -92,7 +92,6 @@ foreach($task in $Tasks){
         }
         "release" {
             Write-Output "Releasing..."
-            Install-Dependency -Name Configuration
             Release
         }
     }
