@@ -29,36 +29,43 @@ Changes site defination, urls , hostnames or credentials used to connect Wilma o
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Set-WPSWSite -site MyWilma -wilma_cred (get-Credential -message "Wilma credentials")
 ```
 
-{{ Add example description here }}
+Changes wilma credentials
+
+### EXAMPLE 2
+```
+Set-WPSWSite -site MyWilma -pq_host primus.server.fi -pq_port 1222 -pq_cred (get-credential -Message "Primus credentials") -pq_exe "c:\Primusquery\primusquery.exe"
+```
+
+Adds or updates primusquery setting on specific site
 
 ## PARAMETERS
 
-### -DefaultSite
-set Site as default
+### -site
+Short name for wilma site
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -pq_cred
-Creadential to use with primusquery
+### -wilma_url
+Wilma site url
 
 ```yaml
-Type: PSCredential
-Parameter Sets: PQ
+Type: String
+Parameter Sets: Wilma
 Aliases:
 
 Required: False
@@ -68,12 +75,27 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -pq_exe
-Path to primusquery excutable
+### -wilma_apikey
+Wilma api-key
 
 ```yaml
 Type: String
-Parameter Sets: PQ
+Parameter Sets: Wilma
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -wilma_cred
+Wilma usercredential
+
+```yaml
+Type: PSCredential
+Parameter Sets: Wilma
 Aliases:
 
 Required: False
@@ -113,42 +135,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -site
-Short name for wilma site
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -wilma_apikey
-Wilma api-key
-
-```yaml
-Type: String
-Parameter Sets: Wilma
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -wilma_cred
-Wilma usercredential
+### -pq_cred
+Creadential to use with primusquery
 
 ```yaml
 Type: PSCredential
-Parameter Sets: Wilma
+Parameter Sets: PQ
 Aliases:
 
 Required: False
@@ -158,13 +150,44 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -wilma_url
-Wilma site url
+### -pq_exe
+Path to primusquery excutable
 
 ```yaml
 Type: String
-Parameter Sets: Wilma
+Parameter Sets: PQ
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DefaultSite
+set Site as default
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
 
 Required: False
 Position: Named
@@ -180,22 +203,6 @@ Prompts you for confirmation before running the cmdlet.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
 
 Required: False
 Position: Named

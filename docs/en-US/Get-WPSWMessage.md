@@ -43,21 +43,6 @@ Gets message content for message id 12345
 
 ## PARAMETERS
 
-### -Folder
-Mailfolder
-
-```yaml
-Type: String
-Parameter Sets: List messages
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Message_id
 Message id
 
@@ -69,6 +54,21 @@ Aliases:
 Required: True
 Position: Named
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Folder
+Mailfolder
+
+```yaml
+Type: String
+Parameter Sets: List messages
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

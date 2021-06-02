@@ -8,12 +8,13 @@ schema: 2.0.0
 # Get-WPSWPrintout
 
 ## SYNOPSIS
-Get  pdf printout from wilma.
+Get pdf printout from wilma.
 
 ## SYNTAX
 
 ```
-Get-WPSWPrintout [-Database] <String> [-card_id] <Int32> [-OutFile] <String> [<CommonParameters>]
+Get-WPSWPrintout [-Database] <String> [-print_id] <Int32> [-card_id] <Int32> [-OutFile] <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -21,29 +22,14 @@ Downloads genarated pdf:s from Wilma.
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Get-WPSWPrintout -Database explearning -card_id 23656  -print_id 86 -OutFile c:\temp\test.pdf
 ```
 
-{{ Add example description here }}
+Gets prinout pdf for explearning id 23656 using printsettings 86
 
 ## PARAMETERS
-
-### -card_id
-card ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 2
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Database
 Database
@@ -60,6 +46,37 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -print_id
+Print ID
+Ypu can get this with browser, it's number part of generated pdf.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -card_id
+card ID
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 3
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -OutFile
 Output file
 
@@ -69,7 +86,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 3
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
