@@ -16,6 +16,7 @@ older one so dont be shy and just [install it](https://docs.microsoft.com/en-us/
  - Upload attachments
  - Dowload wilma printouts as pdf-files
 #### Primusqury features
+ - keeps your credentials safe, no need to write them on scripts
  - import and export data
  - automaticly parse csv or xml formatted queryresults to powershell objects
 
@@ -33,7 +34,11 @@ Install-Module WilmaPSWorker
 
 ### Setup new site
 
-Following setups new site with wilma and primusquery access
+To setup site with only wilma fuctionality use
+```powershell
+New-WPSWSite -site MyWilma -wilma_url https://mysite.inschool.fi -wilma_apikey xxxxxxxxxxxxxx -wilma_cred (get-Credential -message "Wilma credentials")
+```
+To  setup new site with wilma and primusquery access
 ```powershell
 New-WPSWSite -site MyWilma -wilma_url https://mysite.inschool.fi -wilma_apikey xxxxxxxxxxxxxx -wilma_cred (get-Credential -message "Wilma credentials") -pq_host primus.server.fi -pq_port 1222 -pq_cred (get-credential -Message "Primus credentials") -pq_exe "c:\Primusquery\primusquery.exe"
 ```

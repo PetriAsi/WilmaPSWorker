@@ -3,6 +3,11 @@
 Creates new Wilma site , sets addresses and needed credentials.
 .Description
 Setup new site to connect Wilma via http and/or Primus with primusquery.
+
+.EXAMPLE
+New-WPSWSite -site MyWilma -wilma_url https://mysite.inschool.fi -wilma_apikey xxxxxxxxxxxxxx -wilma_cred (get-Credential -message "Wilma credentials") -pq_host primus.server.fi -pq_port 1222 -pq_cred (get-credential -Message "Primus credentials") -pq_exe "c:\Primusquery\primusquery.exe"
+
+Setups new site
 #>
 function New-WPSWSite(){
     [CmdletBinding(SupportsShouldProcess)]
@@ -36,7 +41,6 @@ function New-WPSWSite(){
          $pq_port,
 
          # Credential to use with primusquery]
-
          [PSCredential]
          $pq_cred,
 

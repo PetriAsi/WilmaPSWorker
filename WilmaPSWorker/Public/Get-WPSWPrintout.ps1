@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Get  pdf printout from wilma.
+Get pdf printout from wilma.
 .Description
 Downloads genarated pdf:s from Wilma.
 #>
@@ -13,6 +13,11 @@ function Get-WPSWPrintout (){
       [string]
       $Database,
 
+      # Print ID
+      # Ypu can get this with browser, it's number part of generated pdf.
+      [Parameter(Mandatory=$true)]
+      [int]
+      $print_id,
       # card ID
       [Parameter(Mandatory=$true)]
       [int]
@@ -23,6 +28,7 @@ function Get-WPSWPrintout (){
       $OutFile
 
     )
+    begin {
     $database_ids = @{
       student = 'skip'
       explearning = 12
@@ -39,6 +45,7 @@ function Get-WPSWPrintout (){
 
     $bid=$database_ids[$Database]
     $WPSWSession = Get-WPSWCurrentSession
+
     $basepath="/printouts/"
 
     if ( $Database -eq 'student') {
@@ -46,17 +53,17 @@ function Get-WPSWPrintout (){
     } else {
       $entid = 'gid'
     }
-
+  }
+  process{
     try {
-      $url = "$($WPSWSession.config.url)$basepath$($print_id).pdf?$(if($bid -ne 'skip'){"bid=$bid&"})$entid=$card_id)"
+      $url = "$($WPSWSession.config.url)$basepath$($print_id).pdf?$(if($bid -ne 'skip'){"bid=$bid&"})$entid=$card_id"
       Write-Verbose "$url $($OutFile)"
-      $result = Invoke-WebRequest -Method Get -Uri $url -WebSession $WPSWSession.WilmaSession -OutFile $OutFile
-      if($result.Statuscode -ne 200){
-        Write-Warning "Problem generating printout. Statuscode $($result.Statuscode) "
-      }
+      $result = Invoke-RestMethod -Method Get -Uri $url -WebSession ($WPSWSession.WilmaSession) -OutFile $OutFile
+
     }
     catch{
-      Write-Error "Could get printout."
+      $ErrorMessage = $_.Exception.Message
+      Write-Error "Could not get printout. result: $result. Error message: $ErrorMessage"
     }
-
+  }
 }
