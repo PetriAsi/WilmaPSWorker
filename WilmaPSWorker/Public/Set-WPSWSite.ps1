@@ -80,7 +80,7 @@ Adds or updates primusquery setting on specific site
 
             if ($DefaultSite) { $config['default'] = $site}
             If ($PSCmdlet.ShouldProcess("ShouldProcess?")) {
-                Export-Configuration $config
+                Export-Configuration -Scope User $config
             }
             $config
 
