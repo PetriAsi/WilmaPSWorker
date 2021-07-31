@@ -8,7 +8,7 @@ function New-WPSWSession (){
       [string]
       $site = 'DEFAULT'
     )
-
+    begin {
     $config = Get-WPSWConfig -site $site
 
     Write-Verbose "Starting Get-WPSWSession"
@@ -20,35 +20,49 @@ function New-WPSWSession (){
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $reply = Invoke-RestMethod -Uri "$($config.url)/index_json"
     $SessionId=$reply.SessionID
-
-    $data= "$Login|$SessionId|$($config.apikey)"
-    $hashString= Get-SHA1stringHash( $data )
-    $Apikey = "sha1:$hashString"
-    $LoginParameters = "Login=$Login&Password=$Password&SessionId=$SessionID&ApiKey=$Apikey&format=json"
-
-    $reply = Invoke-RestMethod -Method Post -Uri "$($config.url)/login?$LoginParameters" -SessionVariable WilmaSession
-
-    $result = @{
-        LoginResult = $reply.LoginResult
-        WilmaId     = $reply.WilmaId
-        ApiVersion  = $reply.ApiVersion
-        FormKey     = $reply.FormKey
-        ConnectIds  = $reply.ConnectIds
-        Slug        = $reply.Slug
-        Name        = $reply.Name
-        Type        = $reply.Type
-        PrimusId    = $reply.PrimusId
-        School      = $reply.School
     }
+    process {
+      try{
+      $data= "$Login|$SessionId|$($config.apikey)"
+      $hashString= Get-SHA1stringHash( $data )
+      $Apikey = "sha1:$hashString"
 
-    if ($result.LoginResult -ne "OK") {
-      Write-Debug $result
-      Throw "Kirjautuminen epäonnistui"
-    } else {
-      @{WilmaSession=$WilmaSession
-        Result = $result
-        config = $config
-        Site   = $site}
+      $LoginParameters = @{
+        Login = $Login
+        Password = $Password
+        SessionId = $SessionID
+        ApiKey = $Apikey
+        format = 'json'
+      }
+
+      $reply = Invoke-RestMethod -Method Post -Uri "$($config.url)/login" -Form $LoginParameters -SessionVariable WilmaSession
+
+      $result = @{
+          LoginResult = $reply.LoginResult
+          WilmaId     = $reply.WilmaId
+          ApiVersion  = $reply.ApiVersion
+          FormKey     = $reply.FormKey
+          ConnectIds  = $reply.ConnectIds
+          Slug        = $reply.Slug
+          Name        = $reply.Name
+          Type        = $reply.Type
+          PrimusId    = $reply.PrimusId
+          School      = $reply.School
+      }
+
+      if ($result.LoginResult -ne "OK") {
+        Write-Debug $result
+        Throw "Kirjautuminen epäonnistui"
+      } else {
+        @{WilmaSession=$WilmaSession
+          Result = $result
+          config = $config
+          Site   = $site}
+      }
     }
-
+    catch {
+      $ErrorMessage = $_.Exception.Message
+      throw{"New-WPSWSession cannot connect to site: $ErrorMessage"}
+    }
+  }
 }
