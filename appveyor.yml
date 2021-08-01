@@ -14,7 +14,7 @@ environment:
   PSGalleryAPIKey:
     secure: UJvaolsT35KOWl+E5GGISO4pdWLxj6hATx4UHA+VXLyif1tlFOiGQZitMun8HEFZ
 
-version: 0.2.{build}
+version: 0.3.{build}
 
 # Don't rebuild when I tag a release on GitHub
 skip_tags: true
