@@ -26,8 +26,8 @@ function Connect-WPSWSession (){
     try {
       Write-Verbose "Calling New-WPSWSession -site $site"
       $WPSWSession = New-WPSWSession -site $site
-      Write-Debug $WPSWSession.Result.LoginResult
-      $PsCmdlet.SessionState.PSVariable.Set("_WPSWSession",$WPSWSession )
+      Write-Debug "Login result: $($WPSWSession.Result.LoginResult)"
+      Set-Variable -Name '_WPSWSession' -Value $WPSWSession -Scope Script -Force
 
     }
     Catch {
