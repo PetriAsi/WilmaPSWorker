@@ -3,6 +3,7 @@
 Builds SHA1 string for wilma login
 #>
 Function Get-SHA1StringHash() {
+    [CmdletBinding()]
     param(
 
         [Parameter(Mandatory=$true)]

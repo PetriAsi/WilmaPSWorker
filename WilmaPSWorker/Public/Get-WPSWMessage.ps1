@@ -28,7 +28,14 @@ function Get-WPSWMessage (){
       $Folder
     )
     begin{
-      $WPSWSession = Get-WPSWCurrentSession
+      Write-Verbose "Get-WPSWMessage - Begin"
+      try {
+        $WPSWSession = Get-WPSWCurrentSession
+      } catch {
+        Throw "Get-WPSWMessage - Cannot get Current WPSWSession."
+      }
+
+
       $urimap =@{
         'Inbox'     = '/messages/index_json'
         'Sent'      = '/messages/index_json/outbox'
@@ -39,6 +46,8 @@ function Get-WPSWMessage (){
 
     }
     process {
+      write-verbose "Get-WPSWMessage - Session : $WPSWSession"
+
       try {
 
         if ($Message_id){
@@ -58,7 +67,7 @@ function Get-WPSWMessage (){
       }
       catch{
         $ErrorMessage = $_.Exception.Message
-        Write-Error "Could get messages. $ErrorMessage"
+        Write-Error "Could not get messages. $ErrorMessage"
       }
     }
 }

@@ -3,6 +3,7 @@
 Gets all Wilma site settings or specific site settings
 #>
 function Get-WPSWSite(){
+    [CmdletBinding()]
     param(
         [string]$site
     )

@@ -3,6 +3,7 @@
 Overwrites or wipes temp files before removing.
 #>
 function Remove-TempFile {
+    [CmdletBinding()]
     param (
     [Parameter(Mandatory=$true)]
     [string]$tmpfile
