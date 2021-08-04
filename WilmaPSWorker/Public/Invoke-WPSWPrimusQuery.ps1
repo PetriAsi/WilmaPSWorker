@@ -28,7 +28,13 @@ Imports data to primus
 
 #>
 function Invoke-WPSWPrimusQuery  {
-    param (
+  [CmdletBinding()]
+  param (
+
+    # Site to query
+    [string]
+    $site = 'DEFAULT',
+
     # Queryname on primus
     [Parameter(Mandatory=$true, Position = 0)]
     [string]
@@ -57,19 +63,30 @@ function Invoke-WPSWPrimusQuery  {
     [Parameter(Mandatory=$false,ParameterSetName="Format results")]
     [string[]]$Parameters,
 
-
-
     #File to import to primus
     [Parameter(Mandatory=$true,ParameterSetName="Import data")]
     [string]$Infile
 
-    )
+  )
+  begin {
+    $config = Get-WPSWConfig -site $site
+    Write-Verbose "Invoke-WPSWPrimusquery - config $($config | ConvertTo-Json)"
 
-    $WPSWSession = Get-WPSWCurrentSession
+    if ($null -ne $config.pq_cred) {
+      $pwdfile = Get-CredFile $config.pq_cred
+    } else {
+      throw "Invoke-WPSWPrimusquery - Could not find current credentials!"
+    }
 
-    $pwdfile = Get-CredFile $WPSWSession.config.pq_cred
 
-    $pq = $WPSWSession.config.pq_exe
+    if ($null -ne $config.pq_exe ) {
+      $pq = $config.pq_exe
+      if (-not (Test-Path $pq)) {
+        throw "Invoke-WPSWPrimusquery - Could not primusquery path: $pq"
+      }
+    } else {
+      throw "Invoke-WPSWPrimusquery - Could not find pq_exe variable!"
+    }
 
     #quiet and continue on errors
     $callparms = @('-f', '-q')
@@ -95,11 +112,15 @@ function Invoke-WPSWPrimusQuery  {
       $callparms += $Infile
     }
 
-    $callparms += $($WPSWSession.config.pq_host)
-    $callparms += $($WPSWSession.config.pq_port)
-    $callparms += $($WPSWSession.config.pq_cred.UserName)
+    $callparms += $($config.pq_host)
+    $callparms += $($config.pq_port)
+    $callparms += $($config.pq_cred.UserName)
     $callparms += "`"file:$pwdfile`""
     $callparms += $QueryName
+
+  }
+
+  process {
 
     #Execute query
     &$pq  $callparms
@@ -148,13 +169,10 @@ function Invoke-WPSWPrimusQuery  {
       #Return parsed results
       $parsed
     }
-
     Remove-TempFile -tmpfile $pwdfile
 
     if($outtmp) {
       Remove-TempFile -tmpfile $outtmp
     }
-
-
-
   }
+}
