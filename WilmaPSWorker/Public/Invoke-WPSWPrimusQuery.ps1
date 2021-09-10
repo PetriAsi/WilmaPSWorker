@@ -46,7 +46,7 @@ function Invoke-WPSWPrimusQuery  {
 
     #Parse results and return as parsed psobjects
     [Parameter(Mandatory=$true,ParameterSetName="Format results")]
-    [ValidateSet('xml','csv')]
+    [ValidateSet('xml','csv','json')]
     [string]$ParseResults,
 
     #CSV delimiter
@@ -163,6 +163,19 @@ function Invoke-WPSWPrimusQuery  {
           catch {
             $ErrorMessage = $_.Exception.Message
             Write-host "Error when trying to parse query results $OutFile to csv:`r$ErrorMessage"
+          }
+        }
+        'json' {
+          Write-Verbose "Parsing json"
+          $ft = get-item $Outfile -ErrorAction SilentlyContinue
+          if ($ft.Length -ne 0 ) {
+            try  {
+              $parsed = Get-Content -raw $OutFile | ConvertFrom-Json
+            }
+            catch {
+              $ErrorMessage = $_.Exception.Message
+              Write-host "Error when trying to parse query results $OutFile to json:`r$ErrorMessage"
+            }
           }
         }
       }
