@@ -170,7 +170,7 @@ function Invoke-WPSWPrimusQuery  {
           $ft = get-item $Outfile -ErrorAction SilentlyContinue
           if ($ft.Length -ne 0 ) {
             try  {
-              $parsed = Get-Content -raw $OutFile | ConvertFrom-Json
+              $parsed = Get-Content -raw $OutFile | ConvertFrom-Json -AsHashtable
             }
             catch {
               $ErrorMessage = $_.Exception.Message
