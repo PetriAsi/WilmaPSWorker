@@ -59,30 +59,34 @@ function Send-WPSWAttachment (){
 
       $multipartContent = [System.Net.Http.MultipartFormDataContent]::new()
 
+      #content-type headers for name values makes wilma confused
       $stringHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
       $stringHeader.Name = "formkey"
       $StringContent = [System.Net.Http.StringContent]::new($WPSWSession.Result.FormKey)
       $StringContent.Headers.ContentDisposition = $stringHeader
+      $res = $StringContent.Headers.Remove('Content-Type')
       $multipartContent.Add($stringContent)
 
       $stringHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
       $stringHeader.Name = "formid"
       $StringContent = [System.Net.Http.StringContent]::new($form_id)
       $StringContent.Headers.ContentDisposition = $stringHeader
+      $res = $StringContent.Headers.Remove('Content-Type')
       $multipartContent.Add($stringContent)
 
       $stringHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
       $stringHeader.Name = "targetid"
       $StringContent = [System.Net.Http.StringContent]::new($card_id)
       $StringContent.Headers.ContentDisposition = $stringHeader
+      $res = $StringContent.Headers.Remove('Content-Type')
       $multipartContent.Add($stringContent)
 
       $stringHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
       $stringHeader.Name = "targetdb"
       $StringContent = [System.Net.Http.StringContent]::new($database_ids[$Database])
       $StringContent.Headers.ContentDisposition = $stringHeader
+      $res = $StringContent.Headers.Remove('Content-Type')
       $multipartContent.Add($stringContent)
-
 
       $multipartFile = $fileItem.FullName
       $FileStream = [System.IO.FileStream]::new($multipartFile, [System.IO.FileMode]::Open)
@@ -91,7 +95,11 @@ function Send-WPSWAttachment (){
       $fileHeader.FileName = $fileItem.Name
       $fileContent = [System.Net.Http.StreamContent]::new($FileStream)
       $fileContent.Headers.ContentDisposition = $fileHeader
-      $fileContent.Headers.ContentType = [System.Net.Http.Headers.MediaTypeHeaderValue]::Parse("application/octet-stream")
+      if ((Split-Path -Path $fileItem.Name -Extension) -eq '.pdf' ){
+        $fileContent.Headers.ContentType = [System.Net.Http.Headers.MediaTypeHeaderValue]::Parse("application/pdf")
+      } else {
+        $fileContent.Headers.ContentType = [System.Net.Http.Headers.MediaTypeHeaderValue]::Parse("application/octet-stream")
+      }
       $multipartContent.Add($fileContent)
 
 
