@@ -86,7 +86,12 @@ function Send-WPSWMessage (){
       #teacher ID of the group
       [Parameter(Mandatory=$false,ParameterSetName='NewMessage')]
       [int[]]
-      $r_groupguardian
+      $r_groupguardian,
+
+      #combination of Search ID and school id
+      [Parameter(Mandatory=$false,ParameterSetName='NewMessage')]
+      [string]
+      $r_studentsearch
     )
 
     begin{
@@ -116,7 +121,7 @@ function Send-WPSWMessage (){
           CollatedReplies =$CollatedReplies
         }
 
-        $recipients= ('r_student', 'r_guardian','r_teacher','r_personnel','r_instructor','r_class','r_classguardian','r_group','r_groupguardian')
+        $recipients= ('r_student', 'r_guardian','r_teacher','r_personnel','r_instructor','r_class','r_classguardian','r_group','r_groupguardian', 'r_studentsearch')
         foreach ( $r in $recipients) {
           if((Get-Variable $r).Value) {
             $Body.$($r) = (Get-Variable $r).Value
