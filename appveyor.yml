@@ -12,7 +12,7 @@ environment:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       PowerShellEdition: PowerShellCore
   PSGalleryAPIKey:
-    secure: UJvaolsT35KOWl+E5GGISO4pdWLxj6hATx4UHA+VXLyif1tlFOiGQZitMun8HEFZ
+    secure: onhlbkXk9iiCs0tmRpU38+TxrCDlaiCUcFN97I3IoKw124tKJZPPG8+oRknhPCv2
 
 version: 0.3.{build}
 
