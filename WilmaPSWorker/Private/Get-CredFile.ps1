@@ -13,6 +13,6 @@ function Get-CredFile(){
     $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($cred.Password)
     $UnsecurePassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
     [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($BSTR)
-    $UnsecurePassword |Out-File -encoding utf8 $pwdfile
+    $UnsecurePassword |Out-File  -NoNewline -encoding utf8NoBOM $pwdfile
     $pwdfile
 }
