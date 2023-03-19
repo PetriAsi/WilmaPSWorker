@@ -111,11 +111,14 @@ function Invoke-WPSWPrimusQuery  {
       $callparms += '-i'
       $callparms += $Infile
     }
-
+    $callparms += '-host'
     $callparms += $($config.pq_host)
+    $callparms += '-port'
     $callparms += $($config.pq_port)
+    $callparms += '-user'
     $callparms += $($config.pq_cred.UserName)
-    $callparms += "`"file:$pwdfile`""
+    $callparms += '-pass'
+    $callparms += "file:$pwdfile"
     $callparms += $QueryName
 
   }
