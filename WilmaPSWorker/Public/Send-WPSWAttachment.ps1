@@ -56,7 +56,7 @@ function Send-WPSWAttachment (){
       }
 
       Write-Verbose "Send-WPSWAttachment compose multipart content"
-
+      
       $multipartContent = [System.Net.Http.MultipartFormDataContent]::new()
 
       #content-type headers for name values makes wilma confused
@@ -95,6 +95,8 @@ function Send-WPSWAttachment (){
       $fileHeader.FileName = $fileItem.Name
       $fileContent = [System.Net.Http.StreamContent]::new($FileStream)
       $fileContent.Headers.ContentDisposition = $fileHeader
+      #Hack to prevent filename escaping and keep uft8
+      ($fileContent.Headers.ContentDisposition.Parameters| Where-Object { $_.Name -eq 'filename'}).Value = $fileItem.Name
       if ((Split-Path -Path $fileItem.Name -Extension) -eq '.pdf' ){
         $fileContent.Headers.ContentType = [System.Net.Http.Headers.MediaTypeHeaderValue]::Parse("application/pdf")
       } else {
@@ -118,7 +120,7 @@ function Send-WPSWAttachment (){
 
       try {
         Write-Verbose "$($WPSWSession.config.url)$basepath"
-        $result = Invoke-WebRequest  -Method Post  -Headers $Headers   -Uri "$($WPSWSession.config.url)$basepath"  -ContentType 'multipart/form-data' -Body $multipartContent -WebSession $WPSWSession.WilmaSession
+        $result = Invoke-WebRequest  -Method Post  -Headers $Headers   -Uri "$($WPSWSession.config.url)$basepath"  -ContentType 'multipart/form-data; charset=utf8' -Body $multipartContent -WebSession $WPSWSession.WilmaSession
 
         #Add $result.content check as almost all requests are returning 200
         try {$content = $result.content | ConvertFrom-Json
