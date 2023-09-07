@@ -22,6 +22,12 @@ function Send-WPSWMessage (){
       [string]
       $MessageBody,
 
+      # Body is formad as as HTML
+      [Parameter(Mandatory=$true,ParameterSetName='NewMessage')]
+      [Parameter(Mandatory=$true,ParameterSetName='ReplyMessage')]
+      [switch]
+      $AsHTML,
+
       # Message subject
       [Parameter(Mandatory=$true,ParameterSetName='NewMessage')]
       [string]
@@ -112,6 +118,13 @@ function Send-WPSWMessage (){
       $Body= @{
         formkey = $WPSWSession.Result.FormKey
         bodyText = $MessageBody
+      }
+
+
+      if ($true -eq $AsHTML) {
+          $Body += @{
+            wysiwyg = "ckeditor"
+          }
       }
 
       if ( -not $Reply_id) {
