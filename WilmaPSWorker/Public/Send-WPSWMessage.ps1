@@ -23,10 +23,16 @@ function Send-WPSWMessage (){
       $MessageBody,
 
       # Body is formad as as HTML
-      [Parameter(Mandatory=$true,ParameterSetName='NewMessage')]
-      [Parameter(Mandatory=$true,ParameterSetName='ReplyMessage')]
+      [Parameter(Mandatory=$false,ParameterSetName='NewMessage')]
+      [Parameter(Mandatory=$false,ParameterSetName='ReplyMessage')]
       [switch]
       $AsHTML,
+
+      # Send message always also via email
+      [Parameter(Mandatory=$false,ParameterSetName='NewMessage')]
+      [Parameter(Mandatory=$false,ParameterSetName='ReplyMessage')]
+      [switch]
+      $AlwaysEMail,
 
       # Message subject
       [Parameter(Mandatory=$true,ParameterSetName='NewMessage')]
@@ -125,6 +131,12 @@ function Send-WPSWMessage (){
           $Body += @{
             wysiwyg = "ckeditor"
           }
+      }
+
+      if ($true -eq $AlwaysEmail) {
+        $Body += @{
+          AlwaysEmail = "true"
+        }
       }
 
       if ( -not $Reply_id) {
