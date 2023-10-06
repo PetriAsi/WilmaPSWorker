@@ -138,7 +138,7 @@ function Send-WPSWMessage (){
           AlwaysEmail = "true"
         }
       }
-      AlwaysEMail
+
       if ( -not $Reply_id) {
         $Body += @{
           Subject = $Subject
