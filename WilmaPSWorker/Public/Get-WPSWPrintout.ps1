@@ -14,7 +14,7 @@ function Get-WPSWPrintout (){
     param(
       # Database
       [Parameter(Mandatory=$true)]
-      [validateSet('student','explearning','skilldemo','explearningplaces','crediting','decisions','instructors','applicants','courses')]
+      [validateSet('student','students','explearning','skilldemo','explearningplaces','crediting','decisions','instructors','applicants','courses')]
       [string]
       $Database,
 
@@ -46,6 +46,10 @@ function Get-WPSWPrintout (){
       courses  = 13
 
 
+    }
+
+    if ( $Database -eq 'students') {
+      $Database = 'student'
     }
 
     $bid=$database_ids[$Database]

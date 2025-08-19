@@ -13,7 +13,7 @@ function Send-WPSWAttachment (){
     param(
       # Database
       [Parameter(Mandatory=$true)]
-      [validateSet('students','explearning','skilldemo','explearningplaces')]
+      [validateSet('students','student','explearning','skilldemo','explearningplaces')]
       [string]
       $Database,
 
@@ -38,6 +38,10 @@ function Send-WPSWAttachment (){
       $WPSWSession = Get-WPSWCurrentSession
       $basepath = "/attachments/upload"
 
+      if($Database -eq 'student') {
+        $Database = 'students'
+      }
+
       $database_ids = @{
         explearning = 'suortopit'
         explearningplaces = 'tyossaopp'
@@ -56,7 +60,7 @@ function Send-WPSWAttachment (){
       }
 
       Write-Verbose "Send-WPSWAttachment compose multipart content"
-      
+
       $multipartContent = [System.Net.Http.MultipartFormDataContent]::new()
 
       #content-type headers for name values makes wilma confused
