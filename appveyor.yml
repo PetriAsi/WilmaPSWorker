@@ -14,7 +14,7 @@ environment:
   PSGalleryAPIKey:
     secure: h7q+S5XCLlUaUpIvnVVXlnQNs144c6/SiB+c+UJP5eDhroipHiQ3j0jOji9YTR2N
 
-version: 0.3.{build}
+version: 0.4.{build}
 
 # Don't rebuild when I tag a release on GitHub
 skip_tags: true
@@ -46,6 +46,7 @@ install:
         Install-Module platyPS -Scope CurrentUser -Force
         Install-Module Pester -Scope CurrentUser -Force
         Install-Module PSScriptAnalyzer -Scope CurrentUser -Force
+        Install-Module Configuration -Scope CurrentUser -Force -AllowClobber
         $env:releasePath = "$($pwd.Path)\Release"
 
 before_build:

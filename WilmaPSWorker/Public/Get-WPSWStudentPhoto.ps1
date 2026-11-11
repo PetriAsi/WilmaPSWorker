@@ -21,7 +21,7 @@ function Get-WPSWStudentPhoto (){
     $WPSWSession = Get-WPSWCurrentSession
     try {
       Write-Verbose "$($WPSWSession.config.url)/profiles/photo/student/$($student_id) $($OutFile)"
-      Invoke-WebRequest -Method Get -Uri "$($WPSWSession.config.url)/profiles/photo/student/$($student_id)" -WebSession $WPSWSession.WilmaSession -OutFile $OutFile
+      Invoke-WebRequest -Method Get -Uri "$($WPSWSession.config.url)/profiles/photo/student/$($student_id)" -Headers (Get-WPSWRequestHeader -Session $WPSWSession) -WebSession $WPSWSession.WilmaSession -OutFile $OutFile
     }
     catch{
       Write-Error "Could get student photo for id $student_id."

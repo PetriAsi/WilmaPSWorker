@@ -124,7 +124,7 @@ function Send-WPSWAttachment (){
 
       try {
         Write-Verbose "$($WPSWSession.config.url)$basepath"
-        $result = Invoke-WebRequest  -Method Post  -Headers $Headers   -Uri "$($WPSWSession.config.url)$basepath"  -ContentType 'multipart/form-data; charset=utf8' -Body $multipartContent -WebSession $WPSWSession.WilmaSession
+        $result = Invoke-WebRequest  -Method Post  -Headers (Get-WPSWRequestHeader -Session $WPSWSession -Headers $Headers)   -Uri "$($WPSWSession.config.url)$basepath"  -ContentType 'multipart/form-data; charset=utf8' -Body $multipartContent -WebSession $WPSWSession.WilmaSession
 
         #Add $result.content check as almost all requests are returning 200
         try {$content = $result.content | ConvertFrom-Json

@@ -51,7 +51,7 @@ function Get-WPSWRecipient (){
     process{
       try{
         Write-Verbose "$($WPSWSession.config.url)$($basepath)"
-        $result = Invoke-WebRequest -Method Get -Uri "$($WPSWSession.config.url)$($basepath)" -WebSession $WPSWSession.WilmaSession
+        $result = Invoke-WebRequest -Method Get -Uri "$($WPSWSession.config.url)$($basepath)" -Headers (Get-WPSWRequestHeader -Session $WPSWSession) -WebSession $WPSWSession.WilmaSession
         if($result.Statuscode -eq 200) {
           $result.Content
         } else {

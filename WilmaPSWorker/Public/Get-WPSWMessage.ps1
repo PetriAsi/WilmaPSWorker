@@ -58,7 +58,7 @@ function Get-WPSWMessage (){
 
         $targeturl = "$($WPSWSession.config.url)$baseslug"
         Write-Verbose "Targeturl: $targeturl"
-        $result = Invoke-WebRequest -Method Get -Uri $targeturl -WebSession $WPSWSession.WilmaSession
+        $result = Invoke-WebRequest -Method Get -Uri $targeturl -Headers (Get-WPSWRequestHeader -Session $WPSWSession) -WebSession $WPSWSession.WilmaSession
         if($result.Statuscode -eq 200) {
           $result.Content
         } else {

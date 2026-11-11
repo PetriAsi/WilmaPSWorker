@@ -15,7 +15,7 @@ function Get-WPSWGroup (){
     $target = '/groups/index_json'
     try {
       Write-Verbose "$($WPSWSession.config.url)$($target) $($OutFile)"
-      $result = Invoke-WebRequest -Method Get -Uri "$($WPSWSession.config.url)$($target)" -WebSession $WPSWSession.WilmaSession
+      $result = Invoke-WebRequest -Method Get -Uri "$($WPSWSession.config.url)$($target)" -Headers (Get-WPSWRequestHeader -Session $WPSWSession) -WebSession $WPSWSession.WilmaSession
       if($result.Statuscode -eq 200) {
         $result.Content
       } else {

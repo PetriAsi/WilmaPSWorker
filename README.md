@@ -15,6 +15,7 @@ older one so dont be shy and just [install it](https://docs.microsoft.com/en-us/
  - Download profile pictures
  - Upload attachments
  - Dowload wilma printouts as pdf-files
+ - Supports both session cookie and token based (access/refresh token) Wilma authentication. The mode is detected automatically on every login and tokens are refreshed before they expire. PrimusQuery is not affected.
 #### Primusqury features
  - keeps your credentials safe, no need to write them on scripts
  - import and export data
