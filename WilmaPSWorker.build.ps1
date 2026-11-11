@@ -99,15 +99,13 @@ task TestPS7 {
 # Synopsis: Invoke Pester Tests
 task PesterTests CreateHelp, {
     try {
-        #Pester 5 syntax coud be something like:
-        #$configuration = new-pesterconfiguration
-        #$configuration.Output.Verbosity = 'Detailed'
-        #$configuration.Should.ErrorAction = 'Continue'
-        #$configuration.CodeCoverage.Enabled = $true
-        #$configuration.CodeCoverage.OutputPath = "$BuildRoot\TestResult.xml"
-        #$result = Invoke-Pester -Configuration $configuration
-
-        $result = Invoke-Pester -PassThru -OutputFile "$BuildRoot\TestResult.xml" -OutputFormat "NUnitXml"
+        $configuration = New-PesterConfiguration
+        $configuration.Run.Path = "$BuildRoot\tests"
+        $configuration.Run.PassThru = $true
+        $configuration.TestResult.Enabled = $true
+        $configuration.TestResult.OutputPath = "$BuildRoot\TestResult.xml"
+        $configuration.TestResult.OutputFormat = 'NUnitXml'
+        $result = Invoke-Pester -Configuration $configuration
         if ($env:APPVEYOR_PROJECT_NAME) {
             Add-TestResultToAppveyor -TestFile "$BuildRoot\TestResult.xml"
             Remove-Item "$BuildRoot\TestResult.xml" -Force
