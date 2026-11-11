@@ -12,7 +12,7 @@ environment:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       PowerShellEdition: PowerShellCore
   PSGalleryAPIKey:
-    secure: h7q+S5XCLlUaUpIvnVVXlnQNs144c6/SiB+c+UJP5eDhroipHiQ3j0jOji9YTR2N
+    secure: U6W0FDV2Y45DUzQ40k+Xgcp6JpgF9XIrBQSSBHo7rQgYMXzkZmAxov8iTuG50nSS
 
 version: 0.4.{build}
 
@@ -69,7 +69,7 @@ deploy:
     release: v$(appveyor_build_version)
     description: ''
     auth_token:
-        secure: U6W0FDV2Y45DUzQ40k+Xgcp6JpgF9XIrBQSSBHo7rQgYMXzkZmAxov8iTuG50nSS
+        secure: 27MHEH9kKqkicjp3CE6L2yleiMJa2UWhK9jbvIHPUEYmqG20eHGjgPXYmskfzeN2
     draft: false
     prerelease: false
     on:
