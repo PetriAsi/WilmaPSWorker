@@ -46,7 +46,7 @@ install:
         Install-Module platyPS -Scope CurrentUser -Force
         Install-Module Pester -Scope CurrentUser -Force
         Install-Module PSScriptAnalyzer -Scope CurrentUser -Force
-        Install-Module Configuration -Scope CurrentUser -Force
+        Install-Module Configuration -Scope CurrentUser -Force -AllowClobber
         $env:releasePath = "$($pwd.Path)\Release"
 
 before_build:
