@@ -67,7 +67,7 @@ function Get-WPSWPrintout (){
     try {
       $url = "$($WPSWSession.config.url)$basepath$($print_id).pdf?$(if($bid -ne 'skip'){"bid=$bid&"})$entid=$card_id"
       Write-Verbose "$url $($OutFile)"
-      $result = Invoke-RestMethod -Method Get -Uri $url -WebSession ($WPSWSession.WilmaSession) -OutFile $OutFile
+      $result = Invoke-RestMethod -Method Get -Uri $url -Headers (Get-WPSWRequestHeader -Session $WPSWSession) -WebSession ($WPSWSession.WilmaSession) -OutFile $OutFile
 
     }
     catch{
